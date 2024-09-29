@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <title>About Us</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        html,
+        body 
+        {
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        overflow: hidden;
+        font-family: "Sora", sans-serif;
+        font-optical-sizing: auto;
+
+        }
+
+
+        .slider {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        }
+
+        .slider-wrapper {
+        width: max-content;
+        padding: 0 150px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 100px;
+        }
+
+        .slide {
+        width: 500px;
+        height: 500px !important;
+        background: gray;
+        }
+
+        img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+
+        .marker-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: max-content;
+        height: 100vh;
+        }
+
+        .marker {
+        position: relative;
+        width: 2px;
+        height: 100%;
+        background: #FFF;
+        }
+
+        .marker:after {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 50px;
+        left: -20px;
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        border: 2px solid #FFF;
+        border-radius: 100%;
+        }
+
+        .active-slide {
+        position: absolute;
+        top: 60px;
+        color: white;
+        left: 40px;
+        font-size: 15px;
+        }
+
+    </style>
+
+    <style>
+    /* Menu Style */
+    
+    /* logos */
+    .logo,
+    .menu-logo {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    }
+
+    .logo a,
+    .menu-logo a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    font-family: "Schabo";
+    font-size: 60px;
+    font-weight: lighter;
+    }
+
+    .menu-logo a {
+    color: #fff;
+    }
+
+    /* menu toggle btn */
+    .menu-toggle {
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    width: 120px;
+    height: 60px;
+    background-color: #0f0f0f;
+    border-radius: 8em;
+    transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform-origin: right;
+    cursor: pointer;
+    z-index: 99;
+    }
+
+    .menu-toggle.opened {
+    width: 60px;
+    }
+
+    .menu-copy {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    color: #fff;
+    transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 1;
+    }
+
+    .menu-copy p {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    }
+
+    .menu-toggle:hover .menu-copy {
+    left: 20px;
+    }
+
+    .menu-toggle.opened .menu-copy {
+    opacity: 0;
+    }
+
+    .menu-toggle-icon {
+    position: absolute;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    clip-path: circle(10% at 50% 50%);
+    background-color: white;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 10;
+    overflow: hidden;
+    }
+
+    .menu-toggle:hover .menu-toggle-icon {
+    clip-path: circle(35% at 50% 50%);
+    }
+
+    .menu-toggle.opened .menu-toggle-icon {
+    clip-path: circle(50% at 50% 50%);
+    transform: scale(1.125);
+    }
+
+    .hamburger {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    opacity: 0;
+    }
+
+    .menu-toggle:hover .hamburger,
+    .menu-toggle.opened .hamburger {
+    top: 50%;
+    opacity: 1;
+    }
+
+    .menu-bar {
+    position: absolute;
+    width: 15px;
+    height: 1.5px;
+    background: #000;
+    transition-property: transform;
+    transition: all 250ms ease-out;
+    }
+
+    .menu-bar[data-position="top"] {
+    transform: translateY(-3px);
+    }
+
+    .menu-bar[data-position="bottom"] {
+    transform: translateY(3px);
+    }
+
+    .menu-toggle.opened .menu-bar[data-position="top"] {
+    transform: translateY(0) rotate(45deg) scaleX(1.05);
+    }
+
+    .menu-toggle.opened .menu-bar[data-position="bottom"] {
+    transform: translateY(0) rotate(-45deg) scaleX(1.05);
+    }
+
+    /* menu */
+    .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #0f0f0f;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    pointer-events: none;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    }
+
+    .col-1 {
+    flex: 1;
+    }
+
+    .col-2 {
+    flex: 2;
+    }
+
+    .col {
+    position: relative;
+    height: 100%;
+    padding: 10em 2em 2em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    }
+
+    .link {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    }
+
+    .link a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -1.5px;
+    line-height: 125%;
+    }
+
+    .video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #1d1d1d;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    overflow: hidden;
+    padding: 2em;
+    }
+
+    .video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .socials {
+    width: 50%;
+    display: flex;
+    gap: 2em;
+    }
+
+    .socials .sub-col {
+    flex: 1;
+    }
+
+    .socials .sub-col p {
+    position: relative;
+    color: #fff;
+    transform: translateY(30px);
+    opacity: 0;
+    text-transform: uppercase;
+    font-family: "Akkurat Mono";
+    font-size: 12px;
+    font-weight: 400;
+    }
+
+    .header h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Schabo";
+    font-size: 500px;
+    font-weight: lighter;
+    line-height: 100%;
+    height: 400px;
+    }
+
+    .header h1 span {
+    position: relative;
+    display: inline-block;
+    transform: scale(0.75) translateY(500px) rotateY(90deg);
+    transform-origin: bottom;
+    }
+
+    @media (max-width: 900px) {
+    .col-1 {
+        flex: 2;
+        align-items: flex-start;
+    }
+
+    .link a {
+        font-size: 30px;
+    }
+
+    .video-wrapper {
+        padding: 0.4em;
+    }
+
+    .socials {
+        width: 100%;
+        flex-direction: column;
+        gap: 8em;
+    }
+
+    .header h1 {
+        font-size: 150px;
+        height: 120px;
+    }
+    }
+    </style>
+</head>
+<body>
+
+      <div class="marker-wrapper">
+        <div class="marker">
+          <div class="grab"></div>
+        </div>
+        <div class="active-slide">1/10</div>
+      </div>
+  
+      <div class="slider">
+        <div class="slider-wrapper">
+          <div class="slide">
+            <img src="./about/images/01.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/02.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/03.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/04.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/05.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/06.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/07.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/08.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/09.jpg" alt="" />
+          </div>
+          <div class="slide">
+            <img src="./about/images/10.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+
+        let target = 0;
+        let current = 0;
+        let ease = 0.075;
+  
+        const slider = document.querySelector(".slider");
+        const sliderWrapper = document.querySelector(".slider-wrapper");
+        const markerWrapper = document.querySelector(".marker-wrapper");
+        const activeSlide = document.querySelector(".active-slide");
+  
+        let maxScroll = sliderWrapper.offsetWidth - window.innerWidth;
+  
+        function lerp(start, end, factor) {
+          return start + (end - start) * factor;
+        }
+  
+        function updateActiveSlideNumber(markerMove, markerMaxMove) {
+          const partWidth = markerMaxMove / 10;
+          let currentPart = Math.round((markerMove - 70) / partWidth) + 1;
+          currentPart = Math.min(10, currentPart);
+          activeSlide.textContent = `${currentPart}/10`;
+        }
+  
+        function update() {
+          current = lerp(current, target, ease);
+  
+          gsap.set(".slider-wrapper", {
+            x: -current,
+          });
+  
+          let moveRatio = current / maxScroll;
+  
+          let markerMaxMove = window.innerWidth - markerWrapper.offsetWidth - 170;
+          let markerMove = 70 + moveRatio * markerMaxMove;
+          gsap.set(".marker-wrapper", {
+            x: markerMove,
+          });
+  
+          updateActiveSlideNumber(markerMove, markerMaxMove);
+  
+          requestAnimationFrame(update);
+        }
+  
+        window.addEventListener("resize", () => {
+          maxScroll = sliderWrapper.offsetWidth - window.innerWidth;
+        });
+  
+        window.addEventListener("wheel", (e) => {
+          target += e.deltaY;
+  
+          target = Math.max(0, target);
+          target = Math.min(maxScroll, target);
+        });
+  
+        update();
+      </script>  
+    
+</body>
+</html>

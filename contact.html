@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <title>Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+        }
+
+        .spline {
+            position: fixed;
+            background-color: black;
+            top: 0;
+            right: 0;
+            width: 60vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .contact {
+            position: relative;
+            width: 40vw;
+            height: 100vh;
+            color: white;
+            display: flex;
+            margin-left: 2.2rem;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .h1_Contact_us {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+
+        @media (max-width: 900px) {
+
+        .spline,.contact {
+            width: 100vw;
+            height: 100vh;
+            margin-left: 0;
+            text-align: center;
+        }
+        
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div class="spline">
+        <spline-viewer url="https://prod.spline.design/oTzPKOPHtx4gaQk0/scene.splinecode"></spline-viewer>  
+    </div>
+    
+    <div class="contact">
+        <h1 class="h1_Contact_us">Contact Us</h1>
+        <p>Photography &  videography for <strong>food</strong>, <strong>events</strong>, <strong>commercials</strong>, <strong>weddings</strong> & <strong>social media</strong>.</p>
+        <p>contact@cinefirm.in <strong>|</strong>  +91-98858 59637</p>
+        </br>
+        <h1 class="h1_Contact_us">Why Choose Us</h1>
+        <p>High-quality photography & videography</p>
+        <p>Professional & creative experience</p>
+        <p>Custom packages</p>
+        <p> Quick delivery & exceptional customer service</p>
+        </br>
+        <h1 class="h1_Contact_us">Our Services Include</h1>
+        <p>Event Coverage</p>
+        <p>Commercials & Brand Films</p>
+        <p>Food Photography & Videography</p>
+        <p>Social Media Content</p>
+        <p>Documentary & Short Films</p>
+        <p>Drone Photography & Videography</p>
+        <p> Product Photography </p>
+        <p> Event Livestreaming </p>
+        <p>Fashion Photography </p>
+        <p> 360° Virtual Tours </p>
+        <p> & Moreeeeee </p>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <title>Portfolio</title>
+    <style>
+        * 
+        {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        body 
+        {
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+            background-color: #000;
+            overflow: hidden;
+        }
+    
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+    
+        .slider {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+        }
+    
+        .slide-active {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+    
+        .slide-next {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+    
+        .slide-next .slide-next-img {
+          width: 250px;
+          height: 350px;
+          clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+        }
+    
+        .slider-content {
+          position: absolute;
+          left: 2em;
+          bottom: 0em;
+          width: 100%;
+          height: 175px;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+          overflow: hidden;
+        }
+    
+        .slider-content-active {
+          position: absolute;
+          top: 0;
+          left: 0;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    
+        .slider-content-next {
+          position: absolute;
+          top: 200px;
+          left: 0;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    
+        h1 
+        {
+          text-transform: uppercase;
+          font-size: 6.2rem;
+          font-weight: bold;
+          color: #fff;
+        }
+    
+        h1 span {
+          position: relative;
+        }
+    
+        
+    </style>
+
+    <style>
+    /* Menu Style */
+    
+    /* logos */
+    .logo,
+    .menu-logo {
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    }
+
+    .logo a,
+    .menu-logo a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    font-family: "Schabo";
+    font-size: 60px;
+    font-weight: lighter;
+    }
+
+    .menu-logo a {
+    color: #fff;
+    }
+
+    /* menu toggle btn */
+    .menu-toggle {
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    width: 120px;
+    height: 60px;
+    background-color: #0f0f0f;
+    border-radius: 8em;
+    transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform-origin: right;
+    cursor: pointer;
+    z-index: 99;
+    }
+
+    .menu-toggle.opened {
+    width: 60px;
+    }
+
+    .menu-copy {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    color: #fff;
+    transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 1;
+    }
+
+    .menu-copy p {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    }
+
+    .menu-toggle:hover .menu-copy {
+    left: 20px;
+    }
+
+    .menu-toggle.opened .menu-copy {
+    opacity: 0;
+    }
+
+    .menu-toggle-icon {
+    position: absolute;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    clip-path: circle(10% at 50% 50%);
+    background-color: white;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 10;
+    overflow: hidden;
+    }
+
+    .menu-toggle:hover .menu-toggle-icon {
+    clip-path: circle(35% at 50% 50%);
+    }
+
+    .menu-toggle.opened .menu-toggle-icon {
+    clip-path: circle(50% at 50% 50%);
+    transform: scale(1.125);
+    }
+
+    .hamburger {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    opacity: 0;
+    }
+
+    .menu-toggle:hover .hamburger,
+    .menu-toggle.opened .hamburger {
+    top: 50%;
+    opacity: 1;
+    }
+
+    .menu-bar {
+    position: absolute;
+    width: 15px;
+    height: 1.5px;
+    background: #000;
+    transition-property: transform;
+    transition: all 250ms ease-out;
+    }
+
+    .menu-bar[data-position="top"] {
+    transform: translateY(-3px);
+    }
+
+    .menu-bar[data-position="bottom"] {
+    transform: translateY(3px);
+    }
+
+    .menu-toggle.opened .menu-bar[data-position="top"] {
+    transform: translateY(0) rotate(45deg) scaleX(1.05);
+    }
+
+    .menu-toggle.opened .menu-bar[data-position="bottom"] {
+    transform: translateY(0) rotate(-45deg) scaleX(1.05);
+    }
+
+    /* menu */
+    .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #0f0f0f;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    pointer-events: none;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    }
+
+    .col-1 {
+    flex: 1;
+    }
+
+    .col-2 {
+    flex: 2;
+    }
+
+    .col {
+    position: relative;
+    height: 100%;
+    padding: 10em 2em 2em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    }
+
+    .link {
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    }
+
+    .link a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -1.5px;
+    line-height: 125%;
+    }
+
+    .video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #1d1d1d;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    overflow: hidden;
+    padding: 2em;
+    }
+
+    .video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .socials {
+    width: 50%;
+    display: flex;
+    gap: 2em;
+    }
+
+    .socials .sub-col {
+    flex: 1;
+    }
+
+    .socials .sub-col p {
+    position: relative;
+    color: #fff;
+    transform: translateY(30px);
+    opacity: 0;
+    text-transform: uppercase;
+    font-family: "Akkurat Mono";
+    font-size: 12px;
+    font-weight: 400;
+    }
+
+    .header h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Schabo";
+    font-size: 500px;
+    font-weight: lighter;
+    line-height: 100%;
+    height: 400px;
+    }
+
+    .header h1 span {
+    position: relative;
+    display: inline-block;
+    transform: scale(0.75) translateY(500px) rotateY(90deg);
+    transform-origin: bottom;
+    }
+
+    @media (max-width: 900px) {
+    .col-1 {
+        flex: 2;
+        align-items: flex-start;
+    }
+
+    .link a {
+        font-size: 30px;
+    }
+
+    .video-wrapper {
+        padding: 0.4em;
+    }
+
+    .socials {
+        width: 100%;
+        flex-direction: column;
+        gap: 8em;
+    }
+
+    .header h1 {
+        font-size: 150px;
+        height: 120px;
+    }
+    }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide-active">
+          <img src="./portfolio/assets/1.jpg" alt="" />
+        </div>
+  
+        <div class="slide-next">
+          <div class="slide-next-img">
+            <img src="./portfolio/assets/2.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="slider-content">
+        <div class="slider-content-active">
+          <h1>LuminaPad</h1>
+        </div>
+        <div class="slider-content-next">
+          <h1>PulseEar</h1>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        const sliderContent = [
+        "LuminaPad",
+        "PulseEar",
+        "ZenithWatch",
+        "AeroCharge",
+        "NimbusCam",
+        "EclipseDrive",
+        "TerraHub",
+        "QuantumKey",
+        "MeshRouter",
+        "AuraBearm",
+      ];
+      let currentImageIndex = 2;
+      let currentContentIndex = 1;
+      const totalImages = 10;
+      let isAnimating = false;
+  
+      function splitTextIntoSpans(selector) {
+        let elements = document.querySelectorAll(selector);
+        elements.forEach((element) => {
+          let text = element.innerText;
+          let splitText = text
+            .split("")
+            .map(function (char) {
+              return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+            })
+            .join("");
+          element.innerHTML = splitText;
+        });
+      }
+  
+      gsap.to(".slide-next-img", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        duration: 1.5,
+        ease: "power3.out",
+        delay: 1,
+      });
+  
+      document.addEventListener("click", function () {
+        if (isAnimating) return;
+        isAnimating = true;
+  
+        splitTextIntoSpans(".slider-content-active h1");
+  
+        gsap.to(".slide-active img", {
+          scale: 2,
+          duration: 2,
+          ease: "power3.out",
+        });
+  
+        gsap.to(".slider-content-active h1 span", {
+          top: "-175px",
+          stagger: 0.05,
+          ease: "power3.out",
+          duration: 0.5,
+          onComplete: () => {
+            gsap.to(".slider-content-active", {
+              top: "-175px",
+              duration: 0.25,
+              ease: "power3.out",
+            });
+          },
+        });
+  
+        splitTextIntoSpans(".slider-content-next h1");
+        gsap.set(".slider-content-next h1 span", { top: "200px" });
+  
+        gsap.to(".slider-content-next", {
+          top: "0",
+          duration: 1.125,
+          ease: "power3.out",
+          onComplete: function () {
+            document.querySelector(".slider-content-active").remove();
+            gsap.to(".slider-content-next h1 span", {
+              top: 0,
+              stagger: 0.05,
+              ease: "power3.out",
+              duration: 0.5,
+            });
+  
+            const nextContent = document.querySelector(".slider-content-next");
+            nextContent.classList.remove("slider-content-next");
+            nextContent.classList.add("slider-content-active");
+            nextContent.style.top = "0";
+  
+            currentContentIndex = (currentContentIndex + 1) % totalImages;
+            const nextContentText = sliderContent[currentContentIndex];
+            const newContentHTML = `<div class="slider-content-next" style="top: 200px;"><h1>${nextContentText}</h1></div>`;
+            document
+              .querySelector(".slider-content")
+              .insertAdjacentHTML("beforeend", newContentHTML);
+          },
+        });
+  
+        currentImageIndex = (currentImageIndex % totalImages) + 1;
+  
+        const newSlideHTML = `
+          <div class="slide-next">
+            <div class="slide-next-img">
+              <img src="./portfolio/assets/${currentImageIndex}.jpg" alt="" />
+            </div>
+          </div>
+        `;
+        document
+          .querySelector(".slider")
+          .insertAdjacentHTML("beforeend", newSlideHTML);
+  
+        gsap.to(".slider .slide-next:last-child .slide-next-img", {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 1.5,
+          ease: "power3.out",
+          delay: 0.5,
+        });
+  
+        const slideNextImg = document.querySelector(".slide-next-img");
+        gsap.to(slideNextImg, {
+          width: "100vw",
+          height: "100vh",
+          duration: 2,
+          ease: "power3.out",
+          onComplete: function () {
+            const currentActiveSlide = document.querySelector(".slide-active");
+            if (currentActiveSlide) {
+              currentActiveSlide.parentNode.removeChild(currentActiveSlide);
+            }
+  
+            const nextSlide = document.querySelector(".slide-next");
+            if (nextSlide) {
+              nextSlide.classList.remove("slide-next");
+              nextSlide.classList.add("slide-active");
+  
+              const nextSlideImg = nextSlide.querySelector(".slide-next-img");
+              if (nextSlide) {
+                nextSlideImg.classList.remove("slide-next-img");
+              }
+            }
+  
+            setTimeout(() => {
+              isAnimating = false;
+            }, 500);
+          },
+        });
+      });
+  
+      </script>
+    
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <title>4404 Not Found</title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        html,
+        body {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        font-family: "Sora", sans-serif;
+        font-optical-sizing: auto;
+        overflow-x: hidden;
+        }
+
+        img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+
+        a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 20px;
+        }
+
+        h1 {
+        width: 100%;
+        color: #fff;
+        font-size: 48vw;
+        font-weight: 400;
+        text-align: center;
+        margin: 0;
+        }
+
+        .container {
+        width: 100%;
+        height: 1200vh;
+        }
+
+        nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1em;
+        display: flex;
+        justify-content: center;
+        }
+
+        .wrapper-404 {
+        position: absolute;
+        top: 0;
+        background-color: transparent;
+        width: 400vw;
+        height: 100vh;
+        will-change: transform;
+        }
+
+        .card {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: gray;
+        border-radius: 20px;
+        overflow: hidden;
+        }
+
+        #card-1 {
+        top: 50%;
+        left: 20%;
+        }
+
+        #card-2 {
+        top: 25%;
+        left: 40%;
+        }
+
+        #card-3 {
+        top: 45%;
+        left: 60%;
+        }
+
+        #card-4 {
+        top: 15%;
+        left: 80%;
+        }
+
+        .outro {
+        position: absolute;
+        top: 150vh;
+        width: 100%;
+        height: 100vh;
+        }
+
+        .outro h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+        font-size: 40px;
+        font-weight: lighter;
+        text-align: center;
+        }
+
+        @media (max-width: 900px) {
+        .wrapper-404 {
+            padding-top: 20em;
+        }
+        }
+
+
+        .back-decoration
+        {
+            position: fixed;
+            top:  60%;
+            left: 5%;
+            transform: translate(-50%, -50%) rotate(65deg); /* Rotates and centers the Spline */
+            z-index: 2; /* Ensures it's behind other content */
+            pointer-events: none; /* Prevents it from interacting with clicks */
+            width: 45vw; /* Ensures it covers half inside and half outside the screen */
+            height: 45vw;
+        }
+
+
+
+        .back-decoration-2
+        {
+            position: fixed;
+            top:  5%;
+            left: 80%;
+            transform: translate(-50%, -50%) rotate(227deg); /* Rotates and centers the Spline */
+            z-index: 2; /* Ensures it's behind other content */
+            pointer-events: none; /* Prevents it from interacting with clicks */
+            width: 45vw; /* Ensures it covers half inside and half outside the screen */
+            height: 45vw;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <section class="wrapper-404">
+        <h1>Page Not Found</h1>
+
+        <div class="card" id="card-1">
+          <img src="./404/assets/img-1.jpg" alt="" />
+        </div>
+        <div class="card" id="card-2">
+          <img src="./404/assets/img-2.jpg" alt="" />
+        </div>
+        <div class="card" id="card-3">
+          <img src="./404/assets/img-3.jpg" alt="" />
+        </div>
+        <div class="card" id="card-4">
+          <img src="./404/assets/img-4.jpg" alt="" />
+        </div>
+    </section>
+
+    <section class="outro">
+        <h1>
+          This page doesn't exist anymore... but that's okay. <br />
+          We'll get you right back on the track!
+        </h1>
+    </section>
+
+
+    <div class="back-decoration">
+    <!-- Embed the Spline scene -->
+    <spline-viewer url="https://prod.spline.design/9tOboOaPbjCN6WgL/scene.splinecode"></spline-viewer>
+    </div>
+
+    <div class="back-decoration-2">
+        <spline-viewer url="https://prod.spline.design/NDhYt0ylqSXzInrA/scene.splinecode"></spline-viewer>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+
+        gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener("DOMContentLoaded", function () {
+        const cards = [
+            { id: "#card-1", endTranslateX: -2000, rotate: 45 },
+            { id: "#card-2", endTranslateX: -1000, rotate: -30 },
+            { id: "#card-3", endTranslateX: -2000, rotate: 45 },
+            { id: "#card-4", endTranslateX: -1500, rotate: -30 },
+        ];
+
+        ScrollTrigger.create({
+            trigger: ".wrapper-404",
+            start: "top top",
+            end: "+=900vh",
+            scrub: 1,
+            pin: true,
+            onUpdate: (self) => {
+            gsap.to(".wrapper-404", {
+                x: `${-350 * self.progress}vw`,
+                duration: 0.5,
+                ease: "power3.out",
+            });
+            },
+        });
+
+        cards.forEach((card) => {
+            ScrollTrigger.create({
+            trigger: "card.id",
+            start: "top top",
+            end: "+=1200vh",
+            scrub: 1,
+            onUpdate: (self) => {
+                gsap.to(card.id, {
+                x: `${card.endTranslateX * self.progress}px`,
+                rotate: `${card.rotate * self.progress * 2}`,
+                duration: 0.5,
+                ease: "power3.out",
+                });
+            },
+            });
+        });
+        });
+    </script>
+
+
+    <!---
+    
+    Added a lottie animation for mobile layout as its not responsive 
+
+    -->
+    
+</body>
+</html>
