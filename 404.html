@@ -115,11 +115,7 @@
         text-align: center;
         }
 
-        @media (max-width: 900px) {
-        .wrapper-404 {
-            padding-top: 20em;
-        }
-        }
+        
 
 
         .back-decoration
@@ -142,16 +138,49 @@
             top:  5%;
             left: 80%;
             transform: translate(-50%, -50%) rotate(227deg); /* Rotates and centers the Spline */
-            z-index: 2; /* Ensures it's behind other content */
+            z-index: 1; /* Ensures it's behind other content */
             pointer-events: none; /* Prevents it from interacting with clicks */
             width: 45vw; /* Ensures it covers half inside and half outside the screen */
             height: 45vw;
+        }
+
+        .mobile-tablet
+        {
+            display: none;
+        }
+
+
+        @media (max-width: 900px) {
+            .wrapper-404,.outro,.back-decoration,.back-decoration-2
+            {
+                display: none;
+            }
+
+            .mobile-tablet
+            {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+           
+            
+            
         }
 
     </style>
 </head>
 <body>
 
+
+    <div class="mobile-tablet">
+        <spline-viewer  url="https://prod.spline.design/AtjOWGuvJxgD0HhH/scene.splinecode"></spline-viewer>
+    </div>
 
     <section class="wrapper-404">
         <h1>Page Not Found</h1>
