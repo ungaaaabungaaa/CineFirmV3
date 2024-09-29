@@ -316,6 +316,7 @@
         .menu {
         position: fixed;
         top: 0;
+        z-index: 89;
         left: 0;
         width: 100vw;
         height: 100vh;
@@ -414,29 +415,31 @@
         }
 
         @media (max-width: 900px) {
-        .col-1 {
-            flex: 2;
-            align-items: flex-start;
-        }
+            .col-1 {
+                flex: 2;
+                align-items: flex-start;
+            }
 
-        .link a {
-            font-size: 30px;
-        }
+            .link a {
+                font-size: 30px;
+            }
 
-        .video-wrapper {
-            padding: 0.4em;
-        }
+            .video-wrapper {
+                padding: 0.4em;
+            }
 
-        .socials {
-            width: 100%;
-            flex-direction: column;
-            gap: 8em;
-        }
+            .socials {
+                width: 100%;
+                flex-direction: column;
+                gap: 8em;
+            }
 
-        .header h1 {
-            font-size: 150px;
-            height: 120px;
-        }
+            .header h1 {
+                font-size: xx-large;
+                font-weight: bolder;
+                display: none;
+
+            }
         }
     </style>
 </head>
@@ -462,10 +465,11 @@
             <a href="#">CineFirm</a>
           </div>
           <div class="links">
-            <div class="link"><a href="#">Portfolio</a></div>
-            <div class="link"><a href="#">About Us</a></div>
-            <div class="link"><a href="#">Contact Us</a></div>
-            <div class="link"><a href="#">Terms</a></div>
+            <div class="link"><a href="./index.html">Home</a></div>
+            <div class="link"><a href="./portfolio.html">Portfolio</a></div>
+            <div class="link"><a href="./about.html">About</a></div>
+            <div class="link"><a href="./contact.html">Contact</a></div>
+            <div class="link"><a href="./terms.html">Terms</a></div>
           </div>
           <div class="video-wrapper">
             <video autoplay muted loop>
@@ -476,13 +480,15 @@
         <div class="col col-2">
           <div class="socials">
             <div class="sub-col">
-              <p>CineFirm</p>
-              <p>9 quao Androe Rockfield</p>
-              <p>69001 Ontario</p>
-              <p>Canada</p>
+              <p>motinivas</p>
+              <p>1A, 3rd Cross Rd</p>
+              <p>Srinivagilu, Chandra Reddy Layout</p>
+              <p> S T Bed Layout</p>
+              <p>Ejipura, Bengaluruy</p>
+              <p>Karnataka - 560095</p>
               <br />
-              <p>contact@Avaro.fr</p>
-              <p>job@Avaro.fr</p>
+              <p>contact@cinefirm.in</p>
+              <p> 098858 59637</p>
             </div>
             <div class="sub-col">
               <p>Instagram</p>
@@ -490,9 +496,7 @@
               <p>Twitter</p>
               <p>Facebook</p>
               <p>Dribble</p>
-              <p>Biance</p>
               <p>Pintrest</p>
-              <p>SnapChat</p>
               <br />
               <p>01 62 31 82 42</p>
             </div>
@@ -549,9 +553,6 @@
     </div>
 
      <!-- Slider Content -->
-
-    
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
@@ -728,6 +729,8 @@
       splitTextIntoSpans(".header h1");
 
       menuToggle.addEventListener("click", () => {
+        
+        
         if (isAnimating) return;
 
         if (menuToggle.classList.contains("closed")) {
