@@ -93,271 +93,342 @@
     </style>
 
     <style>
-    /* Menu Style */
-    
-    /* logos */
-    .logo,
-    .menu-logo {
-    position: absolute;
-    top: 2em;
-    left: 2em;
-    }
+      /* Menu Style */
 
-    .logo a,
-    .menu-logo a {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #000;
-    font-family: "Schabo";
-    font-size: 60px;
-    font-weight: lighter;
-    }
+      /* logos */
+      .logo,
+      .menu-logo {
+      position: absolute;
+      top: 2em;
+      left: 2em;
+      }
 
-    .menu-logo a {
-    color: #fff;
-    }
+      .logo a,
+      .menu-logo a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #000;
+      font-family: "Schabo";
+      font-size: 60px;
+      font-weight: lighter;
+      }
 
-    /* menu toggle btn */
-    .menu-toggle {
-    position: fixed;
-    top: 2em;
-    right: 2em;
-    width: 120px;
-    height: 60px;
-    background-color: #0f0f0f;
-    border-radius: 8em;
-    transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transform-origin: right;
-    cursor: pointer;
-    z-index: 99;
-    }
+      .menu-logo a {
+      color: #fff;
+      }
 
-    .menu-toggle.opened {
-    width: 60px;
-    }
+      /* menu toggle btn */
+      .menu-toggle {
+      position: fixed;
+      top: 2em;
+      right: 2em;
+      width: 120px;
+      height: 60px;
+      background-color: #0f0f0f;
+      border-radius: 8em;
+      transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transform-origin: right;
+      cursor: pointer;
+      z-index: 99;
+      }
 
-    .menu-copy {
-    position: absolute;
-    top: 50%;
-    left: 30px;
-    transform: translateY(-50%);
-    color: #fff;
-    transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 1;
-    }
+      .menu-toggle.opened {
+      width: 60px;
+      }
 
-    .menu-copy p {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 12px;
-    margin: 0;
-    padding: 0;
-    }
+      .menu-copy {
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+      color: #fff;
+      transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      z-index: 1;
+      }
 
-    .menu-toggle:hover .menu-copy {
-    left: 20px;
-    }
+      .menu-copy p {
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      }
 
-    .menu-toggle.opened .menu-copy {
-    opacity: 0;
-    }
+      .menu-toggle:hover .menu-copy {
+      left: 20px;
+      }
 
-    .menu-toggle-icon {
-    position: absolute;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    clip-path: circle(10% at 50% 50%);
-    background-color: white;
-    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 10;
-    overflow: hidden;
-    }
+      .menu-toggle.opened .menu-copy {
+      opacity: 0;
+      }
 
-    .menu-toggle:hover .menu-toggle-icon {
-    clip-path: circle(35% at 50% 50%);
-    }
+      .menu-toggle-icon {
+      position: absolute;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      clip-path: circle(10% at 50% 50%);
+      background-color: white;
+      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      z-index: 10;
+      overflow: hidden;
+      }
 
-    .menu-toggle.opened .menu-toggle-icon {
-    clip-path: circle(50% at 50% 50%);
-    transform: scale(1.125);
-    }
+      .menu-toggle:hover .menu-toggle-icon {
+      clip-path: circle(35% at 50% 50%);
+      }
 
-    .hamburger {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    opacity: 0;
-    }
+      .menu-toggle.opened .menu-toggle-icon {
+      clip-path: circle(50% at 50% 50%);
+      transform: scale(1.125);
+      }
 
-    .menu-toggle:hover .hamburger,
-    .menu-toggle.opened .hamburger {
-    top: 50%;
-    opacity: 1;
-    }
+      .hamburger {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      opacity: 0;
+      }
 
-    .menu-bar {
-    position: absolute;
-    width: 15px;
-    height: 1.5px;
-    background: #000;
-    transition-property: transform;
-    transition: all 250ms ease-out;
-    }
+      .menu-toggle:hover .hamburger,
+      .menu-toggle.opened .hamburger {
+      top: 50%;
+      opacity: 1;
+      }
 
-    .menu-bar[data-position="top"] {
-    transform: translateY(-3px);
-    }
+      .menu-bar {
+      position: absolute;
+      width: 15px;
+      height: 1.5px;
+      background: #000;
+      transition-property: transform;
+      transition: all 250ms ease-out;
+      }
 
-    .menu-bar[data-position="bottom"] {
-    transform: translateY(3px);
-    }
+      .menu-bar[data-position="top"] {
+      transform: translateY(-3px);
+      }
 
-    .menu-toggle.opened .menu-bar[data-position="top"] {
-    transform: translateY(0) rotate(45deg) scaleX(1.05);
-    }
+      .menu-bar[data-position="bottom"] {
+      transform: translateY(3px);
+      }
 
-    .menu-toggle.opened .menu-bar[data-position="bottom"] {
-    transform: translateY(0) rotate(-45deg) scaleX(1.05);
-    }
+      .menu-toggle.opened .menu-bar[data-position="top"] {
+      transform: translateY(0) rotate(45deg) scaleX(1.05);
+      }
 
-    /* menu */
-    .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    background-color: #0f0f0f;
-    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-    pointer-events: none;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    }
+      .menu-toggle.opened .menu-bar[data-position="bottom"] {
+      transform: translateY(0) rotate(-45deg) scaleX(1.05);
+      }
 
-    .col-1 {
-    flex: 1;
-    }
+      /* menu */
+      .menu {
+      position: fixed;
+      top: 0;
+      z-index: 89;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      background-color: #0f0f0f;
+      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+      pointer-events: none;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      }
 
-    .col-2 {
-    flex: 2;
-    }
+      .col-1 {
+      flex: 1;
+      }
 
-    .col {
-    position: relative;
-    height: 100%;
-    padding: 10em 2em 2em 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    }
+      .col-2 {
+      flex: 2;
+      }
 
-    .link {
-    position: relative;
-    transform: translateY(30px);
-    opacity: 0;
-    }
+      .col {
+      position: relative;
+      height: 100%;
+      padding: 10em 2em 2em 2em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      }
 
-    .link a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 48px;
-    font-weight: 300;
-    letter-spacing: -1.5px;
-    line-height: 125%;
-    }
+      .link {
+      position: relative;
+      transform: translateY(30px);
+      opacity: 0;
+      }
 
-    .video-wrapper {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background-color: #1d1d1d;
-    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-    overflow: hidden;
-    padding: 2em;
-    }
+      .link a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -1.5px;
+      line-height: 125%;
+      }
 
-    .video-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    }
+      .video-wrapper {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-color: #1d1d1d;
+      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+      overflow: hidden;
+      padding: 2em;
+      }
 
-    .socials {
-    width: 50%;
-    display: flex;
-    gap: 2em;
-    }
+      .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      }
 
-    .socials .sub-col {
-    flex: 1;
-    }
+      .socials {
+      width: 50%;
+      display: flex;
+      gap: 2em;
+      }
 
-    .socials .sub-col p {
-    position: relative;
-    color: #fff;
-    transform: translateY(30px);
-    opacity: 0;
-    text-transform: uppercase;
-    font-family: "Akkurat Mono";
-    font-size: 12px;
-    font-weight: 400;
-    }
+      .socials .sub-col {
+      flex: 1;
+      }
 
-    .header h1 {
-    color: #fff;
-    text-transform: uppercase;
-    font-family: "Schabo";
-    font-size: 500px;
-    font-weight: lighter;
-    line-height: 100%;
-    height: 400px;
-    }
+      .socials .sub-col p {
+      position: relative;
+      color: #fff;
+      transform: translateY(30px);
+      opacity: 0;
+      text-transform: uppercase;
+      font-family: "Akkurat Mono";
+      font-size: 12px;
+      font-weight: 400;
+      }
 
-    .header h1 span {
-    position: relative;
-    display: inline-block;
-    transform: scale(0.75) translateY(500px) rotateY(90deg);
-    transform-origin: bottom;
-    }
+      .header h1 {
+      color: #fff;
+      text-transform: uppercase;
+      font-family: "Schabo";
+      font-size: 500px;
+      font-weight: lighter;
+      line-height: 100%;
+      height: 400px;
+      }
 
-    @media (max-width: 900px) {
-    .col-1 {
-        flex: 2;
-        align-items: flex-start;
-    }
+      .header h1 span {
+      position: relative;
+      display: inline-block;
+      transform: scale(0.75) translateY(500px) rotateY(90deg);
+      transform-origin: bottom;
+      }
 
-    .link a {
-        font-size: 30px;
-    }
+      @media (max-width: 900px) {
+          .col-1 {
+              flex: 2;
+              align-items: flex-start;
+          }
 
-    .video-wrapper {
-        padding: 0.4em;
-    }
+          .link a {
+              font-size: 30px;
+          }
 
-    .socials {
-        width: 100%;
-        flex-direction: column;
-        gap: 8em;
-    }
+          .video-wrapper {
+              padding: 0.4em;
+          }
 
-    .header h1 {
-        font-size: 150px;
-        height: 120px;
-    }
-    }
+          .socials {
+              width: 100%;
+              flex-direction: column;
+              gap: 8em;
+          }
+
+          .header h1 {
+              font-size: xx-large;
+              font-weight: bolder;
+              display: none;
+
+          }
+      }
     </style>
 </head>
 <body>
+
+
+      <!--  Menu   -->
+
+
+      <div class="menu-toggle closed">
+        <div class="menu-toggle-icon">
+          <div class="hamburger">
+            <div class="menu-bar" data-position="top"></div>
+            <div class="menu-bar" data-position="bottom"></div>
+          </div>
+        </div>
+        <div class="menu-copy">
+          <p>Menu</p>
+        </div>
+      </div>
+  
+      <div class="menu">
+        <div class="col col-1">
+          <div class="menu-logo">
+            <a href="#">CineFirm</a>
+          </div>
+          <div class="links">
+            <div class="link"><a href="./index.html">Home</a></div>
+            <div class="link"><a href="./portfolio.html">Portfolio</a></div>
+            <div class="link"><a href="./about.html">About</a></div>
+            <div class="link"><a href="./contact.html">Contact</a></div>
+            <div class="link"><a href="./terms.html">Terms</a></div>
+          </div>
+          <div class="video-wrapper">
+            <video autoplay muted loop>
+              <source src="./menu/assets/video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="col col-2">
+          <div class="socials">
+            <div class="sub-col">
+              <p>motinivas</p>
+              <p>1A, 3rd Cross Rd</p>
+              <p>Srinivagilu, Chandra Reddy Layout</p>
+              <p> S T Bed Layout</p>
+              <p>Ejipura, Bengaluruy</p>
+              <p>Karnataka - 560095</p>
+              <br />
+              <p>contact@cinefirm.in</p>
+              <p> 098858 59637</p>
+            </div>
+            <div class="sub-col">
+              <p>Instagram</p>
+              <p>LinkedIn</p>
+              <p>Twitter</p>
+              <p>Facebook</p>
+              <p>Dribble</p>
+              <p>Pintrest</p>
+              <br />
+              <p>01 62 31 82 42</p>
+            </div>
+          </div>
+  
+          <div class="header">
+            <h1>CF</h1>
+          </div>
+        </div>
+      </div>
+
+      <!--  Menu   -->   
+
 
       <div class="marker-wrapper">
         <div class="marker">
@@ -401,7 +472,9 @@
         </div>
       </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    
     <script>
 
         let target = 0;
@@ -458,7 +531,143 @@
         });
   
         update();
-      </script>  
+    </script> 
+
+
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create(
+    "hop",
+    "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
+  );
+
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".menu");
+  const links = document.querySelectorAll(".link");
+  const socialLinks = document.querySelectorAll(".socials p");
+  let isAnimating = false;
+
+  function splitTextIntoSpans(selector) {
+    let elements = document.querySelectorAll(selector);
+    elements.forEach((element) => {
+      let text = element.innerText;
+      let splitText = text
+        .split("")
+        .map(function (char) {
+          return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+        })
+        .join("");
+      element.innerHTML = splitText;
+    });
+  }
+
+  splitTextIntoSpans(".header h1");
+
+  menuToggle.addEventListener("click", () => {
+    
+    
+    if (isAnimating) return;
+
+    if (menuToggle.classList.contains("closed")) {
+      menuToggle.classList.remove("closed");
+      menuToggle.classList.add("opened");
+
+      isAnimating = true;
+
+      gsap.to(menu, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "hop",
+        duration: 1.5,
+        onStart: () => {
+          menu.style.pointerEvents = "all";
+        },
+        onComplete: () => {
+          isAnimating = false;
+        },
+      });
+
+      // Animate main links when opening
+      gsap.to(links, {
+        y: 0,
+        opacity: 1,
+        stagger: 0.1,
+        delay: 0.85,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Animate social links when opening
+      gsap.to(socialLinks, {
+        y: 0,
+        opacity: 1,
+        stagger: 0.05,
+        delay: 0.85,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.to(".video-wrapper", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "hop",
+        duration: 1.5,
+        delay: 0.5,
+      });
+
+      // Animate header text rotation
+      gsap.to(".header h1 span", {
+        rotateY: 0,
+        stagger: 0.05,
+        delay: 0.75,
+        duration: 1.5,
+        ease: "power4.out",
+      });
+
+      // Animate header text vertical movement
+      gsap.to(".header h1 span", {
+        y: 0,
+        scale: 1,
+        stagger: 0.05,
+        delay: 0.5,
+        duration: 1.5,
+        ease: "power4.out",
+      });
+      } else {
+          menuToggle.classList.remove("opened");
+          menuToggle.classList.add("closed");
+
+          isAnimating = true;
+
+          gsap.to(menu, {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+            ease: "hop",
+            duration: 1.5,
+            onComplete: () => {
+              menu.style.pointerEvents = "none";
+              gsap.set(menu, {
+                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+              });
+
+              gsap.set(links, { y: 30, opacity: 0 });
+              gsap.set(socialLinks, { y: 30, opacity: 0 });
+              gsap.set(".video-wrapper", {
+                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+              });
+              gsap.set(".header h1 span", {
+                y: 500,
+                rotateY: 90,
+                scale: 0.8,
+              });
+
+              isAnimating = false;
+            },
+          });
+        }
+      });
+    });
+    </script>
+    
+    
     
 </body>
 </html>
