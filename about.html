@@ -20,78 +20,218 @@
         width: 100vw;
         height: 100vh;
         background-color: #000;
-        overflow: hidden;
         font-family: "Sora", sans-serif;
         font-optical-sizing: auto;
-
-        }
-
-
-        .slider {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        }
-
-        .slider-wrapper {
-        width: max-content;
-        padding: 0 150px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        gap: 100px;
-        }
-
-        .slide {
-        width: 500px;
-        height: 500px !important;
-        background: gray;
         }
 
         img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
-        .marker-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: max-content;
-        height: 100vh;
+        .header-slider {
+          color: #fff;
+          font-size: 36px;
+          font-weight: 500;
         }
 
-        .marker {
-        position: relative;
-        width: 2px;
-        height: 100%;
-        background: #FFF;
+        a,
+        p {
+          text-decoration: none;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 500;
         }
 
-        .marker:after {
-        position: absolute;
-        content: "";
-        display: block;
-        top: 50px;
-        left: -20px;
-        width: 40px;
-        height: 40px;
-        background-color: #000;
-        border: 2px solid #FFF;
-        border-radius: 100%;
+        .container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          overflow: hidden;
         }
 
-        .active-slide {
-        position: absolute;
-        top: 60px;
-        color: white;
-        left: 40px;
-        font-size: 15px;
+        .blurry-prev {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          backdrop-filter: blur(80px);
+        }
+
+        .col {
+          position: relative;
+          padding: 1em;
+        }
+
+        .site-info {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+          display: flex;
+          gap: 1em;
+        }
+
+        .header {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .project-preview {
+          flex: 2;
+          color: white;
+        }
+
+        .project-details {
+          position: absolute;
+          top: 1em;
+          left: 1em;
+          width: 50%;
+        }
+
+        .title {
+          margin-bottom: 0.5em;
+        }
+
+        .info {
+          margin-bottom: 1em;
+        }
+
+        .title,
+        .credits,
+        .director,
+        .cinematographer,
+        .line {
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .title .header-slider {
+          position: relative;
+          transform: translateY(40px);
+          will-change: transform;
+        }
+
+        .info p .line span,
+        .credits p,
+        .director p,
+        .cinematographer p {
+          display: inline-block;
+          position: relative;
+          transform: translateY(20px);
+          will-change: transform;
+        }
+
+        .project-img {
+          position: absolute;
+          left: 1em;
+          bottom: 1em;
+          width: 75%;
+          height: 50%;
+          overflow: hidden;
+          will-change: transform;
+        }
+
+        .project-img img {
+          will-change: transform;
+        }
+
+        .gallery-wrapper {
+          z-index: 2;
+          overflow: auto;
+          padding: 0.75em;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(20px);
+        }
+
+        .gallery {
+          width: 100px;
+          height: 300vh;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75em;
+        }
+
+        .item {
+          position: relative;
+          flex: 1;
+          background-color: #aeaeae;
+        }
+
+        .item::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.65);
+          transition: background-color 0.5s ease-in-out;
+          transition-delay: 0.5s;
+        }
+
+        .item.active::after {
+          background-color: rgba(0, 0, 0, 0);
+        }
+
+        @media (max-width: 900px) {
+          .container {
+            flex-direction: column;
+          }
+
+          .site-info {
+            flex: 0.5;
+            border-left: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+
+          .header {
+            top: unset;
+            bottom: 1em;
+            transform: none;
+          }
+
+          .site-info .copy {
+            display: none;
+          }
+
+          .project-details {
+            width: calc(100% - 1em);
+          }
+
+          .project-img {
+            width: 93%;
+          }
+
+          .gallery-wrapper {
+            border-right: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+          }
+
+          .gallery {
+            width: 300vw;
+            height: 100px;
+            flex-direction: row;
+          }
         }
 
     </style>
-
     <style>
       /* Menu Style */
 
@@ -108,7 +248,7 @@
       text-decoration: none;
       text-transform: uppercase;
       color: #000;
-      font-family: "Schabo";
+      font-family: "Sora", sans-serif;
       font-size: 60px;
       font-weight: lighter;
       }
@@ -309,26 +449,26 @@
       transform: translateY(30px);
       opacity: 0;
       text-transform: uppercase;
-      font-family: "Akkurat Mono";
+      font-family: "Sora", sans-serif;
       font-size: 12px;
       font-weight: 400;
       }
 
-      .header h1 {
+      .header-menu h3 {
       color: #fff;
       text-transform: uppercase;
-      font-family: "Schabo";
+      font-family: "Sora", sans-serif;
       font-size: 500px;
       font-weight: lighter;
       line-height: 100%;
       height: 400px;
       }
 
-      .header h1 span {
-      position: relative;
-      display: inline-block;
-      transform: scale(0.75) translateY(500px) rotateY(90deg);
-      transform-origin: bottom;
+      .header-menu h3 span {
+        position: relative; /* Ensure the element is positioned in relation to its container */
+        display: inline-block;
+        transform: scale(0.75) translateY(100%); /* 100% to move it fully to the bottom */
+        transform-origin: bottom;
       }
 
       @media (max-width: 900px) {
@@ -351,7 +491,7 @@
               gap: 8em;
           }
 
-          .header h1 {
+          .header h3 {
               font-size: xx-large;
               font-weight: bolder;
               display: none;
@@ -364,8 +504,6 @@
 
 
       <!--  Menu   -->
-
-
       <div class="menu-toggle closed">
         <div class="menu-toggle-icon">
           <div class="hamburger">
@@ -377,7 +515,6 @@
           <p>Menu</p>
         </div>
       </div>
-  
       <div class="menu">
         <div class="col col-1">
           <div class="menu-logo">
@@ -421,119 +558,71 @@
             </div>
           </div>
   
-          <div class="header">
-            <h1>CF</h1>
+          <div class="header-menu">
+            <h3 class="h3">CF</h3>
           </div>
         </div>
       </div>
-
       <!--  Menu   -->   
 
 
-      <div class="marker-wrapper">
-        <div class="marker">
-          <div class="grab"></div>
+      <!-- about  -->
+
+      <div class="container">
+        <div class="blurry-prev">
+          <img src="./about/assets/img1.jpg" alt="" />
+          <div class="overlay"></div>
         </div>
-        <div class="active-slide">1/10</div>
-      </div>
   
-      <div class="slider">
-        <div class="slider-wrapper">
-          <div class="slide">
-            <img src="./about/images/01.jpg" alt="" />
+        <div class="col site-info">
+          
+          <div class="header">
+            <h1 class="header-slider">About Cinfirm®</h1>
           </div>
-          <div class="slide">
-            <img src="./about/images/02.jpg" alt="" />
+          <div class="copy">
+            <p>
+              Capturing moments with creativity and precision, CineFirm transforms your vision into stunning visual stories through expert photography and cinematic videography
+            </p>
           </div>
-          <div class="slide">
-            <img src="./about/images/03.jpg" alt="" />
+        </div>
+  
+        <div class="col project-preview">
+          <div class="project-details">
+            <div class="title"><h1>Beyond The Summit</h1></div>
+            <div class="info">
+              <p>
+                Join a team of elite mountaineers as they attempt to conquer K2 in
+                winter, a feat never before accomplished. This breathtaking
+                documentary captures the raw beauty of the Karakoram and the
+                indomitable human spirit.
+              </p>
+            </div>
+            <div class="credits"><p>Credits</p></div>
+            <div class="director"><p>Director: Alex Honnold</p></div>
+            <div class="cinematographer">
+              <p>Cinematographer: Jimmy Chin</p>
+            </div>
           </div>
-          <div class="slide">
-            <img src="./about/images/04.jpg" alt="" />
+  
+          <div class="project-img">
+            <img src="./about/assets/img1.jpg" alt="" />
           </div>
-          <div class="slide">
-            <img src="./about/images/05.jpg" alt="" />
-          </div>
-          <div class="slide">
-            <img src="./about/images/06.jpg" alt="" />
-          </div>
-          <div class="slide">
-            <img src="./about/images/07.jpg" alt="" />
-          </div>
-          <div class="slide">
-            <img src="./about/images/08.jpg" alt="" />
-          </div>
-          <div class="slide">
-            <img src="./about/images/09.jpg" alt="" />
-          </div>
-          <div class="slide">
-            <img src="./about/images/10.jpg" alt="" />
-          </div>
+        </div>
+  
+        <div class="gallery-wrapper">
+          <div class="gallery"></div>
         </div>
       </div>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+      <!-- about -->
+
+
+      
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     
-    <script>
-
-        let target = 0;
-        let current = 0;
-        let ease = 0.075;
-  
-        const slider = document.querySelector(".slider");
-        const sliderWrapper = document.querySelector(".slider-wrapper");
-        const markerWrapper = document.querySelector(".marker-wrapper");
-        const activeSlide = document.querySelector(".active-slide");
-  
-        let maxScroll = sliderWrapper.offsetWidth - window.innerWidth;
-  
-        function lerp(start, end, factor) {
-          return start + (end - start) * factor;
-        }
-  
-        function updateActiveSlideNumber(markerMove, markerMaxMove) {
-          const partWidth = markerMaxMove / 10;
-          let currentPart = Math.round((markerMove - 70) / partWidth) + 1;
-          currentPart = Math.min(10, currentPart);
-          activeSlide.textContent = `${currentPart}/10`;
-        }
-  
-        function update() {
-          current = lerp(current, target, ease);
-  
-          gsap.set(".slider-wrapper", {
-            x: -current,
-          });
-  
-          let moveRatio = current / maxScroll;
-  
-          let markerMaxMove = window.innerWidth - markerWrapper.offsetWidth - 170;
-          let markerMove = 70 + moveRatio * markerMaxMove;
-          gsap.set(".marker-wrapper", {
-            x: markerMove,
-          });
-  
-          updateActiveSlideNumber(markerMove, markerMaxMove);
-  
-          requestAnimationFrame(update);
-        }
-  
-        window.addEventListener("resize", () => {
-          maxScroll = sliderWrapper.offsetWidth - window.innerWidth;
-        });
-  
-        window.addEventListener("wheel", (e) => {
-          target += e.deltaY;
-  
-          target = Math.max(0, target);
-          target = Math.min(maxScroll, target);
-        });
-  
-        update();
-    </script> 
-
-
+   
     <script>
   document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(CustomEase);
@@ -562,7 +651,7 @@
     });
   }
 
-  splitTextIntoSpans(".header h1");
+  splitTextIntoSpans(".header .h3");
 
   menuToggle.addEventListener("click", () => {
     
@@ -615,7 +704,7 @@
       });
 
       // Animate header text rotation
-      gsap.to(".header h1 span", {
+      gsap.to(".header .h3 span", {
         rotateY: 0,
         stagger: 0.05,
         delay: 0.75,
@@ -624,7 +713,7 @@
       });
 
       // Animate header text vertical movement
-      gsap.to(".header h1 span", {
+      gsap.to(".header .h3 span", {
         y: 0,
         scale: 1,
         stagger: 0.05,
@@ -653,7 +742,7 @@
               gsap.set(".video-wrapper", {
                 clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
               });
-              gsap.set(".header h1 span", {
+              gsap.set(".header h3 span", {
                 y: 500,
                 rotateY: 90,
                 scale: 0.8,
@@ -665,6 +754,230 @@
         }
       });
     });
+    </script>
+
+    <script type="module">
+      import { galleryItems } from "./about/assets/data.js";
+       
+      document.addEventListener("DOMContentLoaded", function () {
+        const gallery = document.querySelector(".gallery");
+        const blurryPrev = document.querySelector(".blurry-prev");
+        const projectPreview = document.querySelector(".project-preview");
+        const itemCount = galleryItems.length;
+
+        let activeItemIndex = 0;
+        let isAnimating = false;
+
+        function createSplitText(element) {
+          const splitText = new SplitType(element, { types: "lines" });
+          element.innerHTML = "";
+          splitText.lines.forEach((line) => {
+            const lineDiv = document.createElement("div");
+            lineDiv.className = "line";
+            const lineSpan = document.createElement("span");
+            lineSpan.textContent = line.textContent;
+            lineDiv.appendChild(lineSpan);
+            element.appendChild(lineDiv);
+          });
+        }
+
+        const initialInfoText = document.querySelector(".info p");
+        if (initialInfoText) {
+          createSplitText(initialInfoText);
+        }
+
+        const elementsToAnimate = document.querySelectorAll(
+          ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
+        );
+        gsap.set(elementsToAnimate, {
+          y: 0,
+        });
+
+        for (let i = 0; i < itemCount; i++) {
+          const itemDiv = document.createElement("div");
+          itemDiv.classList.add("item");
+          if (i === 0) itemDiv.classList.add("active");
+
+          const img = document.createElement("img");
+          img.src = `./about/assets/img${i + 1}.jpg`;
+          img.alt = galleryItems[i].title;
+
+          itemDiv.appendChild(img);
+          itemDiv.dataset.index = i;
+          itemDiv.addEventListener("click", () => handleItemClick(i));
+          gallery.appendChild(itemDiv);
+        }
+
+        function createElementWithClass(tag, className) {
+          const element = document.createElement(tag);
+          element.classList.add(className);
+          return element;
+        }
+
+        function createProjectDetails(activeItem, index) {
+          const newProjectDetails = createElementWithClass("div", "project-details");
+
+          const detailsStructure = [
+            { className: "title", tag: "h1", content: activeItem.title },
+            { className: "info", tag: "p", content: activeItem.copy },
+            { className: "credits", tag: "p", content: "Credits" },
+            {
+              className: "director",
+              tag: "p",
+              content: `Director: ${activeItem.director}`,
+            },
+            {
+              className: "cinematographer",
+              tag: "p",
+              content: `Cinematographer: ${activeItem.cinematographer}`,
+            },
+          ];
+
+          detailsStructure.forEach(({ className, tag, content }) => {
+            const div = createElementWithClass("div", className);
+            const element = document.createElement(tag);
+            element.textContent = content;
+            div.appendChild(element);
+            newProjectDetails.appendChild(div);
+          });
+
+          const newProjectImg = createElementWithClass("div", "project-img");
+          const newImg = document.createElement("img");
+          newImg.src = `./about/assets/img${index + 1}.jpg`;
+          newImg.alt = activeItem.title;
+          newProjectImg.appendChild(newImg);
+
+          return {
+            newProjectDetails,
+            newProjectImg,
+            infoP: newProjectDetails.querySelector(".info p"),
+          };
+        }
+
+        function handleItemClick(index) {
+          if (index === activeItemIndex || isAnimating) return;
+
+          isAnimating = true;
+
+          const activeItem = galleryItems[index];
+
+          gallery.children[activeItemIndex].classList.remove("active");
+          gallery.children[index].classList.add("active");
+          activeItemIndex = index;
+
+          const elementsToAnimate = document.querySelectorAll(
+            ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
+          );
+
+          const currentProjectImg = document.querySelector(".project-img");
+          const currentProjectImgElem = currentProjectImg.querySelector("img");
+
+          const newBlurryImg = document.createElement("img");
+          newBlurryImg.src = `./about/assets/img${index + 1}.jpg`;
+          newBlurryImg.alt = activeItem.title;
+          gsap.set(newBlurryImg, {
+            opacity: 0,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          });
+          blurryPrev.insertBefore(newBlurryImg, blurryPrev.firstChild);
+
+          const currentBlurryImg = blurryPrev.querySelector("img:nth-child(2)");
+          if (currentBlurryImg) {
+            gsap.to(currentBlurryImg, {
+              opacity: 0,
+              duration: 1,
+              delay: 0.5,
+              ease: "power2.inOut",
+              onComplete: () => blurryPrev.removeChild(currentBlurryImg),
+            });
+          }
+
+          gsap.to(newBlurryImg, {
+            delay: 0.5,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut",
+          });
+
+          gsap.to(elementsToAnimate, {
+            y: -60,
+            duration: 1,
+            ease: "power4.in",
+            stagger: 0.05,
+          });
+
+          gsap.to(currentProjectImg, {
+            onStart: () => {
+              gsap.to(currentProjectImgElem, {
+                scale: 2,
+                duration: 1,
+                ease: "power4.in",
+              });
+            },
+            scale: 0,
+            bottom: "10em",
+            duration: 1,
+            ease: "power4.in",
+            onComplete: function () {
+              document.querySelector(".project-details")?.remove();
+              currentProjectImg.remove();
+
+              const { newProjectDetails, newProjectImg, infoP } =
+                createProjectDetails(activeItem, index);
+
+              projectPreview.appendChild(newProjectDetails);
+              projectPreview.appendChild(newProjectImg);
+
+              createSplitText(infoP);
+
+              const newElementsToAnimate = newProjectDetails.querySelectorAll(
+                ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
+              );
+
+              gsap.fromTo(
+                newElementsToAnimate,
+                { y: 40 },
+                {
+                  y: 0,
+                  duration: 1,
+                  ease: "power4.out",
+                  stagger: 0.05,
+                }
+              );
+
+              gsap.fromTo(
+                newProjectImg,
+                { scale: 0, bottom: "-10em" },
+                {
+                  scale: 1,
+                  bottom: "1em",
+                  duration: 1,
+                  ease: "power4.out",
+                }
+              );
+
+              gsap.fromTo(
+                newProjectImg.querySelector("img"),
+                { scale: 2 },
+                {
+                  scale: 1,
+                  duration: 1,
+                  ease: "power4.out",
+                  onComplete: () => {
+                    isAnimating = false;
+                  },
+                }
+              );
+            },
+          });
+        }
+      });
+
     </script>
     
     
