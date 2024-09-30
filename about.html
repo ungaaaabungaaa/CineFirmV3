@@ -454,7 +454,7 @@
       font-weight: 400;
       }
 
-      .header-menu h3 {
+      .header .h3 {
       color: #fff;
       text-transform: uppercase;
       font-family: "Sora", sans-serif;
@@ -464,11 +464,11 @@
       height: 400px;
       }
 
-      .header-menu h3 span {
-        position: relative; /* Ensure the element is positioned in relation to its container */
-        display: inline-block;
-        transform: scale(0.75) translateY(100%); /* 100% to move it fully to the bottom */
-        transform-origin: bottom;
+      .header .h3 span {
+      position: relative;
+      display: inline-block;
+      transform: scale(0.75) translateY(500px) rotateY(90deg);
+      transform-origin: bottom;
       }
 
       @media (max-width: 900px) {
@@ -523,8 +523,8 @@
           <div class="links">
             <div class="link"><a href="./index.html">Home</a></div>
             <div class="link"><a href="./portfolio.html">Portfolio</a></div>
-            <div class="link"><a href="./about.html">About</a></div>
             <div class="link"><a href="./contact.html">Contact</a></div>
+            <div class="link"><a href="./gallery.html">Gallery</a></div>
             <div class="link"><a href="./terms.html">Terms</a></div>
           </div>
           <div class="video-wrapper">
@@ -742,7 +742,7 @@
               gsap.set(".video-wrapper", {
                 clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
               });
-              gsap.set(".header h3 span", {
+              gsap.set(".header .h3 span", {
                 y: 500,
                 rotateY: 90,
                 scale: 0.8,

@@ -6,77 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
-    <title>Contact Us</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100vw;
-            height: 100vh;
-            background-color: black;
-            overflow: hidden;
-            font-family: "Sora", sans-serif;
-            font-optical-sizing: auto;
-        }
-
-        .spline {
-            position: fixed;
-            background-color: black;
-            top: 0;
-            right: 0;
-            width: 60vw;
-            height: 100vh;
-            z-index: 1;
-        }
-
-        .contact {
-            position: relative;
-            width: 40vw;
-            height: 100vh;
-            color: white;
-            display: flex;
-            margin-left: 2.2rem;
-            align-content: center;
-            justify-content: center;
-            flex-direction: column;
-            z-index: 2;
-        }
-
-        .h1_Contact_us {
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-
-
-        @media (max-width: 900px) {
-
-            .spline,.contact {
-                width: 100vw;
-                height: 100vh;
-                margin-left: 0;
-                text-align: center;
-            }
-
-            .mobile_none
-            {
-                display: none;
-            }
-        
-        }
-
-
-
-    </style>
+    <title>Gallery</title>
     <style>
         /* Menu Style */
-  
+
         /* logos */
         .logo,
         .menu-logo {
@@ -84,7 +17,7 @@
         top: 2em;
         left: 2em;
         }
-  
+
         .logo a,
         .menu-logo a {
         text-decoration: none;
@@ -94,11 +27,11 @@
         font-size: 60px;
         font-weight: lighter;
         }
-  
+
         .menu-logo a {
         color: #fff;
         }
-  
+
         /* menu toggle btn */
         .menu-toggle {
         position: fixed;
@@ -113,11 +46,11 @@
         cursor: pointer;
         z-index: 99;
         }
-  
+
         .menu-toggle.opened {
         width: 60px;
         }
-  
+
         .menu-copy {
         position: absolute;
         top: 50%;
@@ -127,7 +60,7 @@
         transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
         z-index: 1;
         }
-  
+
         .menu-copy p {
         text-transform: uppercase;
         font-weight: 500;
@@ -135,15 +68,15 @@
         margin: 0;
         padding: 0;
         }
-  
+
         .menu-toggle:hover .menu-copy {
         left: 20px;
         }
-  
+
         .menu-toggle.opened .menu-copy {
         opacity: 0;
         }
-  
+
         .menu-toggle-icon {
         position: absolute;
         right: 0;
@@ -156,16 +89,16 @@
         z-index: 10;
         overflow: hidden;
         }
-  
+
         .menu-toggle:hover .menu-toggle-icon {
         clip-path: circle(35% at 50% 50%);
         }
-  
+
         .menu-toggle.opened .menu-toggle-icon {
         clip-path: circle(50% at 50% 50%);
         transform: scale(1.125);
         }
-  
+
         .hamburger {
         position: absolute;
         top: 60%;
@@ -179,13 +112,13 @@
         transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
         opacity: 0;
         }
-  
+
         .menu-toggle:hover .hamburger,
         .menu-toggle.opened .hamburger {
         top: 50%;
         opacity: 1;
         }
-  
+
         .menu-bar {
         position: absolute;
         width: 15px;
@@ -194,23 +127,23 @@
         transition-property: transform;
         transition: all 250ms ease-out;
         }
-  
+
         .menu-bar[data-position="top"] {
         transform: translateY(-3px);
         }
-  
+
         .menu-bar[data-position="bottom"] {
         transform: translateY(3px);
         }
-  
+
         .menu-toggle.opened .menu-bar[data-position="top"] {
         transform: translateY(0) rotate(45deg) scaleX(1.05);
         }
-  
+
         .menu-toggle.opened .menu-bar[data-position="bottom"] {
         transform: translateY(0) rotate(-45deg) scaleX(1.05);
         }
-  
+
         /* menu */
         .menu {
         position: fixed;
@@ -226,15 +159,15 @@
         transform-style: preserve-3d;
         perspective: 1000px;
         }
-  
+
         .col-1 {
         flex: 1;
         }
-  
+
         .col-2 {
         flex: 2;
         }
-  
+
         .col {
         position: relative;
         height: 100%;
@@ -244,13 +177,13 @@
         justify-content: space-between;
         align-items: flex-end;
         }
-  
+
         .link {
         position: relative;
         transform: translateY(30px);
         opacity: 0;
         }
-  
+
         .link a {
         text-decoration: none;
         color: #fff;
@@ -259,7 +192,7 @@
         letter-spacing: -1.5px;
         line-height: 125%;
         }
-  
+
         .video-wrapper {
         width: 100%;
         aspect-ratio: 16/9;
@@ -268,23 +201,23 @@
         overflow: hidden;
         padding: 2em;
         }
-  
+
         .video-wrapper video {
         width: 100%;
         height: 100%;
         object-fit: cover;
         }
-  
+
         .socials {
         width: 50%;
         display: flex;
         gap: 2em;
         }
-  
+
         .socials .sub-col {
         flex: 1;
         }
-  
+
         .socials .sub-col p {
         position: relative;
         color: #fff;
@@ -295,7 +228,7 @@
         font-size: 12px;
         font-weight: 400;
         }
-  
+
         .header h1 {
         color: #fff;
         text-transform: uppercase;
@@ -305,51 +238,47 @@
         line-height: 100%;
         height: 400px;
         }
-  
+
         .header h1 span {
         position: relative;
         display: inline-block;
         transform: scale(0.75) translateY(500px) rotateY(90deg);
         transform-origin: bottom;
         }
-  
+
         @media (max-width: 900px) {
             .col-1 {
                 flex: 2;
                 align-items: flex-start;
             }
-  
+
             .link a {
                 font-size: 30px;
             }
-  
+
             .video-wrapper {
                 padding: 0.4em;
             }
-  
+
             .socials {
                 width: 100%;
                 flex-direction: column;
                 gap: 8em;
             }
-  
+
             .header h1 {
                 font-size: xx-large;
                 font-weight: bolder;
                 display: none;
-  
+
             }
         }
     </style>
-
-
 </head>
 <body>
 
-
-    <!-- Menu   -->
-
-      <div class="menu-toggle closed">
+     <!-- Menu -->
+     <div class="menu-toggle closed">
         <div class="menu-toggle-icon">
           <div class="hamburger">
             <div class="menu-bar" data-position="top"></div>
@@ -367,10 +296,11 @@
             <a href="#">CineFirm</a>
           </div>
           <div class="links">
-            <div class="link"><a href="./index.html">Home</a></div>
             <div class="link"><a href="./portfolio.html">Portfolio</a></div>
             <div class="link"><a href="./about.html">About</a></div>
-            <div class="link"><a href="./gallery.html">Gallery</a></div>
+            <div class="link"><a href="./contact.html">Contact</a></div>
+            <div class="link"><a href="./gallery.html">Contact</a></div>
+
             <div class="link"><a href="./terms.html">Terms</a></div>
           </div>
           <div class="video-wrapper">
@@ -410,56 +340,25 @@
         </div>
       </div>
 
-
-    <!-- Menu   -->
+     <!-- Menu -->  
     
-    <div class="spline">
-        <spline-viewer url="https://prod.spline.design/oTzPKOPHtx4gaQk0/scene.splinecode"></spline-viewer>  
-    </div>
     
-    <div class="contact">
-        <h1 class="h1_Contact_us">Contact Us</h1>
-        <p>Photography &  videography for <strong>food</strong>, <strong>events</strong>, <strong>commercials</strong>, <strong>weddings</strong> & <strong>social media</strong>.</p>
-        <p>contact@cinefirm.in <strong>|</strong>  +91-98858 59637</p>
-        </br>
-        <h1 class="h1_Contact_us">Why Choose Us</h1>
-        <p>High-quality photography & videography</p>
-        <p>Professional & creative experience</p>
-        <p>Custom packages</p>
-        <p> Quick delivery & exceptional customer service</p>
-        </br>
-        <h1 class="h1_Contact_us mobile_none">Our Services Include</h1>
-        <p class="mobile_none">Event Coverage</p>
-        <p class="mobile_none">Commercials & Brand Films</p>
-        <p class="mobile_none">Food Photography & Videography</p>
-        <p class="mobile_none">Social Media Content</p>
-        <p class="mobile_none">Documentary & Short Films</p>
-        <p class="mobile_none">Drone Photography & Videography</p>
-        <p class="mobile_none"> Product Photography </p>
-        <p class="mobile_none"> Event Livestreaming </p>
-        <p class="mobile_none">Fashion Photography </p>
-        <p class="mobile_none"> 360° Virtual Tours </p>
-        <p class="mobile_none"> & Moreeeeee </p>
-    </div>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 
-    <script>
+     <script>
         document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(CustomEase);
         CustomEase.create(
           "hop",
           "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
         );
-      
+  
         const menuToggle = document.querySelector(".menu-toggle");
         const menu = document.querySelector(".menu");
         const links = document.querySelectorAll(".link");
         const socialLinks = document.querySelectorAll(".socials p");
         let isAnimating = false;
-      
+  
         function splitTextIntoSpans(selector) {
           let elements = document.querySelectorAll(selector);
           elements.forEach((element) => {
@@ -473,20 +372,20 @@
             element.innerHTML = splitText;
           });
         }
-      
+  
         splitTextIntoSpans(".header h1");
-      
+  
         menuToggle.addEventListener("click", () => {
           
           
           if (isAnimating) return;
-      
+  
           if (menuToggle.classList.contains("closed")) {
             menuToggle.classList.remove("closed");
             menuToggle.classList.add("opened");
-      
+  
             isAnimating = true;
-      
+  
             gsap.to(menu, {
               clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
               ease: "hop",
@@ -498,7 +397,7 @@
                 isAnimating = false;
               },
             });
-      
+  
             // Animate main links when opening
             gsap.to(links, {
               y: 0,
@@ -508,7 +407,7 @@
               duration: 1,
               ease: "power3.out",
             });
-      
+  
             // Animate social links when opening
             gsap.to(socialLinks, {
               y: 0,
@@ -518,14 +417,14 @@
               duration: 1,
               ease: "power3.out",
             });
-      
+  
             gsap.to(".video-wrapper", {
               clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
               ease: "hop",
               duration: 1.5,
               delay: 0.5,
             });
-      
+  
             // Animate header text rotation
             gsap.to(".header h1 span", {
               rotateY: 0,
@@ -534,7 +433,7 @@
               duration: 1.5,
               ease: "power4.out",
             });
-      
+  
             // Animate header text vertical movement
             gsap.to(".header h1 span", {
               y: 0,
@@ -544,41 +443,39 @@
               duration: 1.5,
               ease: "power4.out",
             });
-            } else {
-                menuToggle.classList.remove("opened");
-                menuToggle.classList.add("closed");
-      
-                isAnimating = true;
-      
-                gsap.to(menu, {
-                  clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-                  ease: "hop",
-                  duration: 1.5,
-                  onComplete: () => {
-                    menu.style.pointerEvents = "none";
-                    gsap.set(menu, {
-                      clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-                    });
-      
-                    gsap.set(links, { y: 30, opacity: 0 });
-                    gsap.set(socialLinks, { y: 30, opacity: 0 });
-                    gsap.set(".video-wrapper", {
-                      clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-                    });
-                    gsap.set(".header h1 span", {
-                      y: 500,
-                      rotateY: 90,
-                      scale: 0.8,
-                    });
-      
-                    isAnimating = false;
-                  },
+          } else {
+            menuToggle.classList.remove("opened");
+            menuToggle.classList.add("closed");
+  
+            isAnimating = true;
+  
+            gsap.to(menu, {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+              ease: "hop",
+              duration: 1.5,
+              onComplete: () => {
+                menu.style.pointerEvents = "none";
+                gsap.set(menu, {
+                  clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
                 });
-              }
+  
+                gsap.set(links, { y: 30, opacity: 0 });
+                gsap.set(socialLinks, { y: 30, opacity: 0 });
+                gsap.set(".video-wrapper", {
+                  clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+                });
+                gsap.set(".header h1 span", {
+                  y: 500,
+                  rotateY: 90,
+                  scale: 0.8,
+                });
+  
+                isAnimating = false;
+              },
             });
-          });
-    </script>
-
-    
+          }
+        });
+      });
+      </script>
 </body>
 </html>
