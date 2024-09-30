@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <title>About Us</title>
+    
     <style>
         * {
         margin: 0;
@@ -232,6 +233,7 @@
         }
 
     </style>
+ 
     <style>
       /* Menu Style */
 
@@ -250,7 +252,7 @@
       color: #000;
       font-family: "Sora", sans-serif;
       font-size: 60px;
-      font-weight: lighter;
+      font-weight: bold;
       }
 
       .menu-logo a {
@@ -454,17 +456,17 @@
       font-weight: 400;
       }
 
-      .header .h3 {
+      .header-menu .header-menu-h3 {
       color: #fff;
       text-transform: uppercase;
       font-family: "Sora", sans-serif;
       font-size: 500px;
-      font-weight: lighter;
+      font-weight: bold;
       line-height: 100%;
       height: 400px;
       }
 
-      .header .h3 span {
+      .header-menu  .header-menu-h3 span {
       position: relative;
       display: inline-block;
       transform: scale(0.75) translateY(500px) rotateY(90deg);
@@ -559,14 +561,14 @@
           </div>
   
           <div class="header-menu">
-            <h3 class="h3">CF</h3>
+            <h3 class="header-menu-h3">CF</h3>
           </div>
         </div>
       </div>
       <!--  Menu   -->   
 
 
-      <!-- about  -->
+     
 
       <div class="container">
         <div class="blurry-prev">
@@ -614,7 +616,7 @@
         </div>
       </div>
 
-      <!-- about -->
+   
 
 
       
@@ -651,7 +653,7 @@
     });
   }
 
-  splitTextIntoSpans(".header .h3");
+  splitTextIntoSpans(".header-menu .header-menu-h3");
 
   menuToggle.addEventListener("click", () => {
     
@@ -704,7 +706,7 @@
       });
 
       // Animate header text rotation
-      gsap.to(".header .h3 span", {
+      gsap.to(".header-menu .header-menu-h3 span", {
         rotateY: 0,
         stagger: 0.05,
         delay: 0.75,
@@ -713,7 +715,7 @@
       });
 
       // Animate header text vertical movement
-      gsap.to(".header .h3 span", {
+      gsap.to(".header-menu .header-menu-h3 span", {
         y: 0,
         scale: 1,
         stagger: 0.05,
@@ -742,7 +744,7 @@
               gsap.set(".video-wrapper", {
                 clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
               });
-              gsap.set(".header .h3 span", {
+              gsap.set(".header-menu .header-menu-h3 span", {
                 y: 500,
                 rotateY: 90,
                 scale: 0.8,
@@ -756,6 +758,7 @@
     });
     </script>
 
+   
     <script type="module">
       import { galleryItems } from "./about/assets/data.js";
        
@@ -979,6 +982,7 @@
       });
 
     </script>
+ 
     
     
     
