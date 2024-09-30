@@ -27,8 +27,8 @@
 
         .spline_container
         {
-          padding-top: 1.1rem;
-          padding-bottom: 1.1rem;
+         padding: 0;
+         margin: 0;
         }
 
       
@@ -310,7 +310,7 @@
     font-weight: 400;
     }
 
-    .header h1 {
+    .header-menu .header-menu-h3 {
     color: #fff;
     text-transform: uppercase;
     font-family: "Sora", sans-serif;
@@ -321,7 +321,7 @@
     height: 400px;
     }
 
-    .header h1 span {
+    .header-menu .header-menu-h3 span {
     position: relative;
     display: inline-block;
     transform: scale(0.75) translateY(500px) rotateY(90deg);
@@ -348,11 +348,19 @@
           gap: 8em;
       }
 
-      .header h1 {
-          font-size: xx-large;
-          font-weight: bolder;
-          display: none;
+      .header-menu .header-menu-h3 {
+                display: none;
+            }
+
+      #menu-logo-mobile {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: white;
+            font-family: "Sora", sans-serif;
+            font-size: xx-large;
+            font-weight: bold;
       }
+
     }
     </style>
 </head>
@@ -368,9 +376,10 @@
         <h1 class="terms_h1">Terms & Conditions</h1>
         <br></br>
         <p class="terms_p">Welcome to Cinefirm, a Photography & Videography company. By using our website, you agree to the following terms & conditions. <br></br> Please read them carefully before using our services.</p>
-        <div class="spline_container mobile-none">
+        <div class="f mobile-none">
             <spline-viewer url="https://prod.spline.design/CBQ2YzWI1b1lQswu/scene.splinecode"></spline-viewer>
         </div>
+        <br>
         <h2 class="terms_h2">1. Acceptance of Terms</h2>
         <br></br>
         <p class="terms_p">By accessing & using <strong>Cinefirm's</strong> website, you accept & agree to be bound by these terms & conditions. <br></br> If you do not agree to these terms, you should not use our website or services.</p>
@@ -436,7 +445,7 @@
     <div class="menu">
         <div class="col col-1">
           <div class="menu-logo">
-            <a href="#">CineFirm</a>
+            <a id="menu-logo-mobile" href="./index.html">CineFirm</a>
           </div>
           <div class="links">
             <div class="link"><a href="./index.html">Home</a></div>
@@ -476,16 +485,12 @@
             </div>
           </div>
   
-          <div class="header">
-            <h1 class="mobile-none">CF</h1>
+          <div class="header-menu">
+            <h3 class="header-menu-h3">CF</h3>
           </div>
         </div>
     </div>
-
-
-
-
-
+    
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
@@ -518,7 +523,7 @@
             });
           }
     
-          splitTextIntoSpans(".header h1");
+          splitTextIntoSpans(".header-menu .header-menu-h3");
     
           menuToggle.addEventListener("click", () => {
             if (isAnimating) return;
@@ -569,7 +574,7 @@
               });
     
               // Animate header text rotation
-              gsap.to(".header h1 span", {
+              gsap.to(".header-menu .header-menu-h3 span", {
                 rotateY: 0,
                 stagger: 0.05,
                 delay: 0.75,
@@ -578,7 +583,7 @@
               });
     
               // Animate header text vertical movement
-              gsap.to(".header h1 span", {
+              gsap.to(".header-menu .header-menu-h3 span", {
                 y: 0,
                 scale: 1,
                 stagger: 0.05,
@@ -607,7 +612,7 @@
                   gsap.set(".video-wrapper", {
                     clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
                   });
-                  gsap.set(".header h1 span", {
+                  gsap.set(".header-menu .header-menu-h3 span", {
                     y: 500,
                     rotateY: 90,
                     scale: 0.8,
