@@ -296,7 +296,7 @@
         font-weight: 400;
         }
   
-        .header h1 {
+        .header-menu .header-menu-h3 {
         color: #fff;
         text-transform: uppercase;
         font-family: "Sora", sans-serif;
@@ -306,7 +306,7 @@
         height: 400px;
         }
   
-        .header h1 span {
+        .header-menu .header-menu-h3 span {
         position: relative;
         display: inline-block;
         transform: scale(0.75) translateY(500px) rotateY(90deg);
@@ -480,7 +480,7 @@
           });
         }
       
-        splitTextIntoSpans(".header h1");
+        splitTextIntoSpans(".header-menu .header-menu-h3");
       
         menuToggle.addEventListener("click", () => {
           
@@ -533,7 +533,7 @@
             });
       
             // Animate header text rotation
-            gsap.to(".header h1 span", {
+            gsap.to(".header-menu .header-menu-h3 span", {
               rotateY: 0,
               stagger: 0.05,
               delay: 0.75,
@@ -542,7 +542,7 @@
             });
       
             // Animate header text vertical movement
-            gsap.to(".header h1 span", {
+            gsap.to(".header-menu .header-menu-h3 span", {
               y: 0,
               scale: 1,
               stagger: 0.05,
@@ -571,7 +571,7 @@
                     gsap.set(".video-wrapper", {
                       clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
                     });
-                    gsap.set(".header h1 span", {
+                    gsap.set(".header-menu .header-menu-h3 span", {
                       y: 500,
                       rotateY: 90,
                       scale: 0.8,
