@@ -588,7 +588,7 @@
 
       <div class="container">
         <div class="blurry-prev">
-          <img src="./about/assets/img1.jpg" alt="" />
+          <img src="./about/assets/img1.webp" alt="" />
           <div class="overlay"></div>
         </div>
   
@@ -606,24 +606,21 @@
   
         <div class="col project-preview">
           <div class="project-details">
-            <div class="title"><h1>Beyond The Summit</h1></div>
+            <div class="title"><h1>Fashion photography</h1></div>
             <div class="info">
               <p>
-                Join a team of elite mountaineers as they attempt to conquer K2 in
-                winter, a feat never before accomplished. This breathtaking
-                documentary captures the raw beauty of the Karakoram and the
-                indomitable human spirit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor bibendum orci, id venenatis elit. Integer nec dictum velit, ac blandit justo. Mauris vehicula dictum erat, eget cursus mi.
               </p>
             </div>
             <div class="credits"><p>Credits</p></div>
-            <div class="director"><p>Director: Alex Honnold</p></div>
+            <div class="director"><p>Director: Bala</p></div>
             <div class="cinematographer">
-              <p>Cinematographer: Jimmy Chin</p>
+              <p>Editor: Kalyan</p>
             </div>
           </div>
   
           <div class="project-img">
-            <img src="./about/assets/img1.jpg" alt="" />
+            <img src="./about/assets/img1.webp" alt="" />
           </div>
         </div>
   
@@ -818,7 +815,7 @@
           if (i === 0) itemDiv.classList.add("active");
 
           const img = document.createElement("img");
-          img.src = `./about/assets/img${i + 1}.jpg`;
+          img.src = `./about/assets/img${i + 1}.webp`;
           img.alt = galleryItems[i].title;
 
           itemDiv.appendChild(img);
@@ -862,7 +859,7 @@
 
           const newProjectImg = createElementWithClass("div", "project-img");
           const newImg = document.createElement("img");
-          newImg.src = `./about/assets/img${index + 1}.jpg`;
+          newImg.src = `./about/assets/img${index + 1}.webp`;
           newImg.alt = activeItem.title;
           newProjectImg.appendChild(newImg);
 
@@ -892,7 +889,7 @@
           const currentProjectImgElem = currentProjectImg.querySelector("img");
 
           const newBlurryImg = document.createElement("img");
-          newBlurryImg.src = `./about/assets/img${index + 1}.jpg`;
+          newBlurryImg.src = `./about/assets/img${index + 1}.webp`;
           newBlurryImg.alt = activeItem.title;
           gsap.set(newBlurryImg, {
             opacity: 0,
