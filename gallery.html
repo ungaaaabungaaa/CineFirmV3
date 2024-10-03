@@ -17,22 +17,28 @@
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#000000">
 
-
-
     <link rel="prefetch" href="./404.html">
-
     <link rel="prefetch" href="./about.html">
     <link rel="prefetch" href="./index.html">
     <link rel="prefetch" href="./portfolio.html">
     <link rel="prefetch" href="./terms.html">
 
-
-
+    <link rel="preload" as="image" href="./about/assets/img1.webp">
+    <link rel="preload" as="image" href="./about/assets/img2.webp">
+    <link rel="preload" as="image" href="./about/assets/img3.webp">
+    <link rel="preload" as="image" href="./about/assets/img4.webp">
+    <link rel="preload" as="image" href="./about/assets/img5.webp">
+    <link rel="preload" as="image" href="./about/assets/img6.webp">
+    <link rel="preload" as="image" href="./about/assets/img7.webp">
+    <link rel="preload" as="image" href="./about/assets/img8.webp">
+    <link rel="preload" as="image" href="./about/assets/img9.webp">
+    <link rel="preload" as="image" href="./about/assets/img10.webp">
     <title>Gallery</title>
     
     <style>
 
-        * {
+        * 
+        {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -42,125 +48,25 @@
         html,
         body {
         width: 100vw;
-        height: 100vh;
-        background: #000;
+        height: auto;
+        display: block;
+        background: white;
         font-family: "Sora", sans-serif;
         font-optical-sizing: auto;
         }
 
-        img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        }
-
-        .content {
-        position: relative;
-        width: 100vw;
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        z-index: 2;
-        }
-
-    
-
-        .hero {
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        color: #fff;
-        }
-
-
-
-        .container {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        gap: 1em;
-        }
-
-        .container .col {
-        position: relative;
-        flex: 1;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        }
-
-        .col .item {
-        position: relative;
-        flex: 1;
-        width: 100%;
-        background: gainsboro;
-        overflow: hidden;
-        }
-
-        .c-1,
-        .c-3,
-        .c-5 {
-        top: 100%;
-        }
-
-        .c-1 .item,
-        .c-3 .item,
-        .c-5 .item {
-        top: 100%;
-        }
-
-        .c-2 .item,
-        .c-4 .item {
-        top: -100%;
-        }
-
-        @media (max-width: 900px) {
-        .slide-num {
-            text-align: left;
-            padding-left: 2em;
-            margin-bottom: 2.5em;
-        }
-
-        .title {
-            font-size: 30px;
-        }
-
-        .icon,
-        .icon-2 {
-            padding: 0 1em;
-            font-size: 16px;
-        }
-
-        .preview img {
-            width: 60px;
-            height: 40px;
-        }
-        }
-
-
-        .my_slider
+        img
         {
-        width: 100vw;
-        height: 100vh;
-        opacity: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: black;
-        color: white;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .containerx
         {
           width: 100vw;
+          margin-top: 1.2rem;
+          margin-bottom: 1.2rem;
           height: auto;
           columns: 4;
           opacity: 0;
@@ -176,7 +82,7 @@
         }
 
 
-        .containerx .boxx #imgx
+        .containerx .boxx .imgx
         {
           max-width: 100%;
           background-color: black;
@@ -184,168 +90,27 @@
           object-fit: cover; /* Change from contain to cover */
         }
 
-
-
-
-          
     </style>
 
 </head>
 <body>
 
-
-     <div class="container">
-        <div class="col c-1">
-          <div class="item"><img src="./about/assets/img1.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img2.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img3.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img4.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img5.webp" alt="" /></div>
-        </div>
-        <div class="col c-2">
-          <div class="item"><img src="./about/assets/img6.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img7.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img8.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img9.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img10.webp" alt="" /></div>
-        </div>
-        <div class="col c-3">
-          <div class="item"><img src="./about/assets/img11.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img12.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img13.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img14.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img15.webp" alt="" /></div>
-        </div>
-        <div class="col c-4">
-          <div class="item"><img src="./about/assets/img1.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img2.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img3.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img4.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img5.webp" alt="" /></div>
-        </div>
-        <div class="col c-5">
-          <div class="item"><img src="./about/assets/img6.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img7.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img8.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img9.webp" alt="" /></div>
-          <div class="item"><img src="./about/assets/img10.webp" alt="" /></div>
-        </div>
-      </div>
-  
-      <div class="content">
-        <div class="hero">
-          <div class="containerx">
-            <div class="boxx"><img id="imgx" src="./about/assets/img1.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img2.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img3.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img4.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img5.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img6.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img7.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img8.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img9.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img10.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img11.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img12.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img13.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img14.webp" alt="" srcset=""></div>
-            <div class="boxx"><img id="imgx" src="./about/assets/img15.webp" alt="" srcset=""></div>
-            
-
-           
-          </div>
-        </div>
-      </div>
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-      <script>
-        let tl = gsap.timeline({ delay: 0 });
-
-        tl.to(".col", {
-            top: "0",
-            duration: 3,
-            ease: "power4.inOut",
-        });
-
-        tl.to(
-            ".c-1 .item",
-            {
-            top: "0",
-            stagger: 0.25,
-            duration: 3,
-            ease: "power4.inOut",
-            },
-            "-=2"
-        );
-
-        tl.to(
-            ".c-2 .item",
-            {
-            top: "0",
-            stagger: -0.25,
-            duration: 3,
-            ease: "power4.inOut",
-            },
-            "-=4"
-        );
-
-        tl.to(
-            ".c-3 .item",
-            {
-            top: "0",
-            stagger: 0.25,
-            duration: 3,
-            ease: "power4.inOut",
-            },
-            "-=4"
-        );
-
-        tl.to(
-            ".c-4 .item",
-            {
-            top: "0",
-            stagger: -0.25,
-            duration: 3,
-            ease: "power4.inOut",
-            },
-            "-=4"
-        );
-
-        tl.to(
-            ".c-5 .item",
-            {
-            top: "0",
-            stagger: 0.25,
-            duration: 3,
-            ease: "power4.inOut",
-            },
-            "-=4"
-        );
-
-        // Add fade-in for the slider here
-        tl.to(
-            ".containerx",
-            {
-            opacity: 1, // This creates the fade-in effect
-            duration: 2, // Duration for the fade
-            ease: "power4.inOut",
-            },
-            "-=2"
-        ); // Starts 2 seconds before the previous animation finishes
-            
-
-
-
-        tl.to(
-            ".container",
-            {
-            scale: 6,
-            duration: 4,
-            ease: "power4.inOut",
-            },
-            "-=2"
-        );
-      </script>
-  
+    <div class="containerx">
+      <div class="boxx"><img  class="imgx" src="./about/assets/img1.webp" loading="lazy"  alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img3.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img4.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img5.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img6.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img7.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img8.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img9.webp" loading="lazy"   alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img10.webp" loading="lazy" alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img11.webp" loading="lazy" alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img12.webp" loading="lazy"  alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img13.webp" loading="lazy"  alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img14.webp" loading="lazy"  alt="" srcset=""></div>
+      <div class="boxx"><img class="imgx" src="./about/assets/img15.webp" loading="lazy"  alt="" srcset=""></div>
+    </div>
+       
 </body>
 </html>
