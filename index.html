@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -70,808 +71,302 @@
         text-decoration: none;
         color: #fff;
         font-size: 14px;
-        }
-
-        .slider {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        }
-
-        .slider-images {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        }
-
-        .img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        }
-
-        .slider-counter {
-        position: absolute;
-        bottom: 2em;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 24px;
-        display: flex;
-        gap: 0.5em;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
-
-        .slider-counter > div {
-        flex: 1;
-        }
-
-        .slider-counter p {
-        line-height: 20px;
-        }
-
-        .counter {
-        position: relative;
-        top: 0px;
-        will-change: transform;
-        }
-
-        .slider-title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 64px;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
-
-        .slider-title-wrapper {
-        position: relative;
-        width: 100%;
-        top: 0px;
-        text-align: center;
-        will-change: transform;
-        }
-
-        .slider-title-wrapper p {
-        font-size: 50px;
-        line-height: 60px;
-        }
-
-        .slider-indicators {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 75%;
-        display: flex;
-        justify-content: space-between;
-        }
-
-        .slider-indicators p {
-        position: relative;
-        font-size: 40px;
-        font-weight: 200;
-        will-change: transform;
-        }
-
-        .slider-preview {
-        position: absolute;
-        bottom: 2em;
-        right: 2em;
-        width: 35%;
-        height: 50px;
-        display: flex;
-        gap: 1em;
-        }
-
-        .preview {
-        position: relative;
-        flex: 1;
-        cursor: pointer;
-        }
-
-        .preview::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        transition: 0.3s ease-in-out;
-        }
-
-        .preview.active::after {
-        background-color: rgba(0, 0, 0, 0);
-        }
-
-        @media (max-width: 900px) {
-        .slider-indicators {
-            width: 90%;
-        }
-
-        .slider-preview {
-            width: 90%;
-            bottom: 5em;
-        }
-
-        .slider-title-wrapper p {
-            font-size: 30px;
-        }
-        }
-
-        /* Slider Style */
-        
+        } 
     </style>
 
     <style>
-        /* Menu Style */
-
-        /* logos */
-        .logo,
-        .menu-logo {
+      #overlay-light {
         position: absolute;
-        top: 2em;
-        left: 2em;
-        }
-
-        .logo a,
-        .menu-logo a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #000;
-        font-family: "Sora", sans-serif;
-        font-size: 60px;
-        font-weight: bold;
-        }
-
-        .menu-logo a {
-        color: #fff;
-        }
-
-        /* menu toggle btn */
-        .menu-toggle {
-        position: fixed;
-        top: 2em;
-        right: 2em;
-        width: 120px;
-        height: 60px;
-        background-color: #0f0f0f;
-        border-radius: 8em;
-        transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-        transform-origin: right;
-        cursor: pointer;
-        z-index: 99;
-        }
-
-        .menu-toggle.opened {
-        width: 60px;
-        }
-
-        .menu-copy {
-        position: absolute;
-        top: 50%;
-        left: 30px;
-        transform: translateY(-50%);
-        color: #fff;
-        transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-        z-index: 1;
-        }
-
-        .menu-copy p {
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 12px;
-        margin: 0;
-        padding: 0;
-        }
-
-        .menu-toggle:hover .menu-copy {
-        left: 20px;
-        }
-
-        .menu-toggle.opened .menu-copy {
-        opacity: 0;
-        }
-
-        .menu-toggle-icon {
-        position: absolute;
-        right: 0;
-        width: 60px;
-        height: 60px;
-        border-radius: 100%;
-        clip-path: circle(10% at 50% 50%);
-        background-color: white;
-        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-        z-index: 10;
-        overflow: hidden;
-        }
-
-        .menu-toggle:hover .menu-toggle-icon {
-        clip-path: circle(35% at 50% 50%);
-        }
-
-        .menu-toggle.opened .menu-toggle-icon {
-        clip-path: circle(50% at 50% 50%);
-        transform: scale(1.125);
-        }
-
-        .hamburger {
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-        opacity: 0;
-        }
-
-        .menu-toggle:hover .hamburger,
-        .menu-toggle.opened .hamburger {
-        top: 50%;
-        opacity: 1;
-        }
-
-        .menu-bar {
-        position: absolute;
-        width: 15px;
-        height: 1.5px;
-        background: #000;
-        transition-property: transform;
-        transition: all 250ms ease-out;
-        }
-
-        .menu-bar[data-position="top"] {
-        transform: translateY(-3px);
-        }
-
-        .menu-bar[data-position="bottom"] {
-        transform: translateY(3px);
-        }
-
-        .menu-toggle.opened .menu-bar[data-position="top"] {
-        transform: translateY(0) rotate(45deg) scaleX(1.05);
-        }
-
-        .menu-toggle.opened .menu-bar[data-position="bottom"] {
-        transform: translateY(0) rotate(-45deg) scaleX(1.05);
-        }
-
-        /* menu */
-        .menu {
-        position: fixed;
-        top: 0;
-        z-index: 89;
-        left: 0;
         width: 100vw;
         height: 100vh;
+        background: white;
+        z-index: 1;
+      }
+
+      #overlay-dark {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        z-index: 2;
+      }
+
+      .content {
+        width: 100%;
+        height: 100vh;
+        padding: 1em 0;
+      }
+
+      .content > * {
+        position: relative;
+        z-index: 3;
+        mix-blend-mode: difference;
+        color: #fff;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: #fff;
+        margin: 0.2em 0;
+      }
+
+      .nav {
+        text-transform: uppercase;
+      }
+
+      .nav-divider {
+        margin-top: 1em;
+      }
+
+      .row {
+        width: 100%;
+        height: 20px;
         display: flex;
-        background-color: #0f0f0f;
-        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-        pointer-events: none;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-        }
+        padding: 0 2em;
+      }
 
-        .col-1 {
+      .row > .col {
+        position: relative;
         flex: 1;
-        }
+      }
 
-        .col-2 {
+      .row > .col:first-child {
         flex: 2;
-        }
+      }
 
-        .col {
-        position: relative;
-        height: 100%;
-        padding: 10em 2em 2em 2em;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        }
-
-        .link {
-        position: relative;
-        transform: translateY(30px);
-        opacity: 0;
-        }
-
-        .link a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 48px;
-        font-weight: 300;
-        letter-spacing: -1.5px;
-        line-height: 125%;
-        }
-
-        .video-wrapper {
+      .marquee {
+        position: absolute;
+        bottom: 10%;
         width: 100%;
-        aspect-ratio: 16/9;
-        background-color: #1d1d1d;
-        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+        padding-top: 4em;
+        margin: 0 auto;
+        white-space: nowrap;
         overflow: hidden;
-        padding: 2em;
-        }
-
-        .video-wrapper video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        }
-
-        .socials {
-        width: 50%;
-        display: flex;
-        gap: 2em;
-        }
-
-        .socials .sub-col {
-        flex: 1;
-        }
-
-        .socials .sub-col p {
-        position: relative;
-        color: #fff;
-        transform: translateY(30px);
-        opacity: 0;
-        text-transform: uppercase;
-        font-family: "Sora", sans-serif;
-        font-size: 12px;
+        z-index: 3;
+      }
+      .marquee span {
+        font-family: "Neue Montreal";
         font-weight: 400;
-        }
-
-        .header-menu .header-menu-h3 {
-        color: #fff;
+        letter-spacing: -10px;
+        color: #000;
+        mix-blend-mode: normal !important;
+        font-size: 12em;
         text-transform: uppercase;
-        font-family: "Sora", sans-serif;
-        font-size: 500px;
-        font-weight: bold;
-        line-height: 100%;
-        height: 400px;
-        }
-
-        .header-menu .header-menu-h3 span {
-        position: relative;
         display: inline-block;
-        transform: scale(0.75) translateY(500px) rotateY(90deg);
-        transform-origin: bottom;
+        padding-left: -10%;
+        animation: marquee-animation 80s linear infinite;
+      }
+
+      @keyframes marquee-animation {
+        0% {
+          transform: translate(0, 0);
         }
-
-        @media (max-width: 900px) {
-            .col-1 {
-                flex: 2;
-                align-items: flex-start;
-            }
-
-            .link a {
-                font-size: 30px;
-            }
-
-            .video-wrapper {
-                padding: 0.4em;
-            }
-
-            .socials {
-                width: 100%;
-                flex-direction: column;
-                gap: 8em;
-            }
-
-            .header-menu .header-menu-h3 {
-                display: none;
-            }
-
-            #menu-logo-mobile {
-            text-decoration: none;
-            text-transform: uppercase;
-            color: white;
-            font-family: "Sora", sans-serif;
-            font-size: xx-large;
-            font-weight: bold;
-            }
+        100% {
+          transform: translate(-100%, 0);
         }
+      }
+
+      img {
+        position: relative;
+        top: 40px;
+        width: 200px;
+      }
+
+      #hidden
+      {
+        display: none;
+      }
+
+      .bold
+      {
+        font-weight: bold;
+      }
     </style>
+
+    
 </head>
 <body>
 
 
-
-      <!-- Menu -->
-      <div class="menu-toggle closed">
-        <div class="menu-toggle-icon">
-          <div class="hamburger">
-            <div class="menu-bar" data-position="top"></div>
-            <div class="menu-bar" data-position="bottom"></div>
-          </div>
-        </div>
-        <div class="menu-copy">
-          <p>Menu</p>
-        </div>
+  <div id="overlay-light" class="overlay"></div>
+  <div class="marquee">
+      <span>
+        CineFirm &nbsp;
+        <img src="./projects-preview.gif" alt="" /> &nbsp; Photography
+        &nbsp; <img src="./projects-preview.gif" alt="" /> &nbsp; VedioGraphy
+        &nbsp; <img src="./projects-preview.gif" alt="" /> &nbsp; Brand Design
+        Broll &nbsp; <img src="./projects-preview.gif" alt="" /> &nbsp;
+        Interior Photography &nbsp; <img src="./projects-preview.gif" alt="" /> &nbsp; Modeling
+      </span>
+  </div>
+  <div id="overlay-dark" class="overlay"></div>
+  
+  <div class="content">
+      <div class="nav row">
+        <div class="col"><h1>Cinefirm</h1></div>
+        <div class="col"><h1>Contact</h1></div>
+        <div class="col"><h1>Services</h1></div>
+        <div class="col"><h1>Clients</h1></div>
+        <div class="col"><h1 id="hidden">Cinefirm</h1></div>
       </div>
-  
-      <div class="menu">
-        <div class="col col-1">
-          <div class="menu-logo">
-            <a id="menu-logo-mobile" href="./portfolio.html">CineFirm</a>
-          </div>
-          <div class="links">
-            <div class="link"><a href="./index.html">Home</a></div>
-            <div class="link"><a href="./portfolio.html">Portfolio</a></div>
-            <div class="link"><a href="./gallery.html">Gallery</a></div>
-            <div class="link"><a href="./terms.html">Terms</a></div>
-            <div class="link"><a href="./404.html">404</a></div>
-          </div>
-          <div class="video-wrapper">
-            <video autoplay muted loop>
-              <source src="./menu/assets/video.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-        <div class="col col-2">
-          <div class="socials">
-            <div class="sub-col">
-              <p>motinivas</p>
-              <p>1A, 3rd Cross Rd</p>
-              <p>Srinivagilu, Chandra Reddy Layout</p>
-              <p> S T Bed Layout</p>
-              <p>Ejipura, Bengaluruy</p>
-              <p>Karnataka - 560095</p>
-              <br />
-              <p>contact@cinefirm.in</p>
-              <p> 098858 59637</p>
-            </div>
-            <div class="sub-col">
-              <p>Instagram</p>
-              <p>LinkedIn</p>
-              <p>Twitter</p>
-              <p>Facebook</p>
-              <p>Dribble</p>
-              <p>Pintrest</p>
-              <br />
-              <p>01 62 31 82 42</p>
-            </div>
-          </div>
-  
-          <div class="header-menu">
-            <h3 class="header-menu-h3">CF</h3>
-          </div>
-        </div>
+      <div class="divider nav-divider"></div>
+      <div class="row">
+        <div class="col">Capturing Moments With Creativity & Precision</div>
+        <div class="col">+91 98858 59637</div>
+        <div class="col">Art Direction</div>
+        <div class="col">Yuki</div>
+        <div class="col">Burberry</div>
       </div>
-
-     <!-- Menu -->  
-
-
-    <!-- Slider Content -->
-    <div class="slider">
-        <div class="slider-images">
-          <div class="img"><img src="./index/assets/img1.webp" alt="" /></div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col">We Transforms Your Vision Into</div>
+        <div class="col"></div>
+        <div class="col">Brand Positioning</div>
+        <div class="col">Smoor</div>
+        <div class="col">Hermès</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col">Stunning Visual Stories Through</div>
+        <div class="col">India</div>
+        <div class="col">Brand & Identity Design</div>
+        <div class="col">Equinox</div>
+        <div class="col">Valentino</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col">Expert Photography</div>
+        <div class="col">Ejipura, Bengaluru</div>
+        <div class="col">Creative Direction</div>
+        <div class="col">Ammas</div>
+        <div class="col">Gap</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col">
+          & Cinematic Videography 
         </div>
-  
-        <div class="slider-title">
-          <div class="slider-title-wrapper">
-            <p>Yuki</p>
-            <p>Brooks</p>
-            <p>Modeling</p>
-            <p>BigBang Pizza</p>
-            <p>WedZ</p>
-          </div>
-        </div>
-  
-        <div class="slider-counter">
-          <div class="counter">
-            <p>1</p>
-            <p>2</p>
-            <p>3</p>
-            <p>4</p>
-            <p>5</p>
-          </div>
-          <div><p>&mdash;</p></div>
-          <div><p>5</p></div>
-        </div>
-  
-        <div class="slider-preview">
-          <div class="preview active"><img src="./index/assets/img1.webp" alt="" /></div>
-          <div class="preview"><img src="./index/assets/img2.webp" alt="" /></div>
-          <div class="preview"><img src="./index/assets/img3.webp" alt="" /></div>
-          <div class="preview"><img src="./index/assets/img4.webp" alt="" /></div>
-          <div class="preview"><img src="./index/assets/img5.webp" alt="" /></div>
-        </div>
-  
-        <div class="slider-indicators">
-          <p>+</p>
-          <p>+</p>
-        </div>
-    </div>
+        <div class="col">Karnataka 560095</div>
+        <div class="col">Design Direction</div>
+        <div class="col">Kabab Magic</div>
+        <div class="col">ASOS</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">Content Creation</div>
+        <div class="col">Royal</div>
+        <div class="col">Moncler</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Shoot Booking, Media</div>
+        <div class="col">Motion</div>
+        <div class="col">Induldge</div>
+        <div class="col">COS</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">& General inquiries:</div>
+        <div class="col">Promotional Videos</div>
+        <div class="col">Wedz</div>
+        <div class="col">H&M</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">Product Strategy</div>
+        <div class="col">ProVen</div>
+        <div class="col">Chanel</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Contact@CineFirm.in</div>
+        <div class="col">360° Photography</div>
+        <div class="col">Dream11</div>
+        <div class="col">Fendi</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col">E-Commerce</div>
+        <div class="col">2Twele</div>
+        <div class="col">Versace</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Instagram</div>
+        <div class="col">Documentary</div>
+        <div class="col">The Post</div>
+        <div class="col">Bershka</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Linkedin</div>
+        <div class="col">Time-Lapse Photography</div>
+        <div class="col">Newtok</div>
+        <div class="col">Levi's</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Dribble</div>
+        <div class="col">Video Editing</div>
+        <div class="col">Tovala</div>
+        <div class="col">Off-White</div>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">Unsplash</div>
+        <div class="col">Visual Storytelling</div>
+        <div class="col">LunarCrush</div>
+        <div class="col"><span class="bold">50+ More</span></div>
+      </div>
+      <div class="divider"></div>
+  </div>
 
-
-
-     
-
-     <!-- Slider Content -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-   
-   
-   <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        gsap.registerPlugin(CustomEase);
-        CustomEase.create(
-            "hop",
-            "M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1"
-        );
-
-        const sliderImages = document.querySelector(".slider-images");
-        const counter = document.querySelector(".counter");
-        const titles = document.querySelector(".slider-title-wrapper");
-        const indicators = document.querySelectorAll(".slider-indicators p");
-        const prevSlides = document.querySelectorAll(".slider-preview .preview");
-        const slidePreview = document.querySelector(".slider-preview");
-
-        let currentImg = 1;
-        const totalSlides = 5;
-        let indicatorRotation = 0;
-
-        function updateCounterAndTitlePosition() {
-            const counterY = -20 * (currentImg - 1);
-            const titleY = -60 * (currentImg - 1);
-
-            gsap.to(counter, {
-            y: counterY,
-            duration: 1,
-            ease: "hop",
-            });
-
-            gsap.to(titles, {
-            y: titleY,
-            duration: 1,
-            ease: "hop",
-            });
-        }
-
-        function updateActiveSlidePreview() {
-            prevSlides.forEach((prev) => prev.classList.remove("active"));
-            prevSlides[currentImg - 1].classList.add("active");
-        }
-
-        function animateSlide(direction) {
-            const currentSlide =
-            document.querySelectorAll(".img")[
-                document.querySelectorAll(".img").length - 1
-            ];
-
-            const slideImg = document.createElement("div");
-            slideImg.classList.add("img");
-
-            const slideImgElem = document.createElement("img");
-            slideImgElem.src = `./index/assets/img${currentImg}.webp`;
-            gsap.set(slideImgElem, { x: direction === "left" ? -500 : 500 });
-
-            slideImg.appendChild(slideImgElem);
-            sliderImages.appendChild(slideImg);
-
-            gsap.to(currentSlide.querySelector("img"), {
-            x: direction === "left" ? 500 : -500,
-            duration: 1.5,
-            ease: "hop",
-            });
-
-            gsap.fromTo(
-            slideImg,
-            {
-                clipPath:
-                direction === "left"
-                    ? "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"
-                    : "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-            },
-            {
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: 1.5,
-                ease: "hop",
-            }
-            );
-            gsap.to(slideImgElem, {
-            x: 0,
-            duration: 1.5,
-            ease: "hop",
-            });
-
-            cleanupSlides();
-
-            indicatorRotation += direction === "left" ? -90 : 90;
-            gsap.to(indicators, {
-            rotate: indicatorRotation,
-            duration: 1,
-            ease: "hop",
-            });
-        }
-
-        document.addEventListener("click", (event) => {
-            const sliderWidth = document.querySelector(".slider").clientWidth;
-            const clickPosition = event.clientX;
-
-            if (slidePreview.contains(event.target)) {
-            const clickedPrev = event.target.closest(".preview");
-
-            if (clickedPrev) {
-                const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
-
-                if (clickedIndex !== currentImg) {
-                if (clickedIndex < currentImg) {
-                    currentImg = clickedIndex;
-                    animateSlide("left");
-                } else {
-                    currentImg = clickedIndex;
-                    animateSlide("right");
-                }
-                updateActiveSlidePreview();
-                updateCounterAndTitlePosition();
-                }
-            }
-            return;
-            }
-
-            if (clickPosition < sliderWidth / 2 && currentImg !== 1) {
-            currentImg--;
-            animateSlide("left");
-            } else if (clickPosition > sliderWidth / 2 && currentImg !== totalSlides) {
-            currentImg++;
-            animateSlide("right");
-            }
-
-            updateActiveSlidePreview();
-            updateCounterAndTitlePosition();
-        });
-
-        function cleanupSlides() {
-            const imgElements = document.querySelectorAll(".slider-images .img");
-            if (imgElements.length > totalSlides) {
-            imgElements[0].remove();
-            }
-        }
-        });
-    </script>
-
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-      gsap.registerPlugin(CustomEase);
-      CustomEase.create(
-        "hop",
-        "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
-      );
-
-      const menuToggle = document.querySelector(".menu-toggle");
-      const menu = document.querySelector(".menu");
-      const links = document.querySelectorAll(".link");
-      const socialLinks = document.querySelectorAll(".socials p");
-      let isAnimating = false;
-
-      function splitTextIntoSpans(selector) {
-        let elements = document.querySelectorAll(selector);
-        elements.forEach((element) => {
-          let text = element.innerText;
-          let splitText = text
-            .split("")
-            .map(function (char) {
-              return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
-            })
-            .join("");
-          element.innerHTML = splitText;
-        });
-      }
-
-      splitTextIntoSpans(".header-menu .header-menu-h3");
-
-      menuToggle.addEventListener("click", () => {
-        
-        
-        if (isAnimating) return;
-
-        if (menuToggle.classList.contains("closed")) {
-          menuToggle.classList.remove("closed");
-          menuToggle.classList.add("opened");
-
-          isAnimating = true;
-
-          gsap.to(menu, {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            ease: "hop",
-            duration: 1.5,
-            onStart: () => {
-              menu.style.pointerEvents = "all";
-            },
-            onComplete: () => {
-              isAnimating = false;
-            },
-          });
-
-          // Animate main links when opening
-          gsap.to(links, {
-            y: 0,
-            opacity: 1,
-            stagger: 0.1,
-            delay: 0.85,
-            duration: 1,
-            ease: "power3.out",
-          });
-
-          // Animate social links when opening
-          gsap.to(socialLinks, {
-            y: 0,
-            opacity: 1,
-            stagger: 0.05,
-            delay: 0.85,
-            duration: 1,
-            ease: "power3.out",
-          });
-
-          gsap.to(".video-wrapper", {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-            ease: "hop",
-            duration: 1.5,
-            delay: 0.5,
-          });
-
-          // Animate header text rotation
-          gsap.to(".header-menu .header-menu-h3 span", {
-            rotateY: 0,
-            stagger: 0.05,
-            delay: 0.75,
-            duration: 1.5,
-            ease: "power4.out",
-          });
-
-          // Animate header text vertical movement
-          gsap.to(".header-menu .header-menu-h3 span", {
-            y: 0,
-            scale: 1,
-            stagger: 0.05,
-            delay: 0.5,
-            duration: 1.5,
-            ease: "power4.out",
-          });
-        } else {
-          menuToggle.classList.remove("opened");
-          menuToggle.classList.add("closed");
-
-          isAnimating = true;
-
-          gsap.to(menu, {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-            ease: "hop",
-            duration: 1.5,
-            onComplete: () => {
-              menu.style.pointerEvents = "none";
-              gsap.set(menu, {
-                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-              });
-
-              gsap.set(links, { y: 30, opacity: 0 });
-              gsap.set(socialLinks, { y: 30, opacity: 0 });
-              gsap.set(".video-wrapper", {
-                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-              });
-              gsap.set(".header-menu .header-menu-h3 span", {
-                y: 500,
-                rotateY: 90,
-                scale: 0.8,
-              });
-
-              isAnimating = false;
-            },
-          });
-        }
-      });
+  <script>
+    gsap.to("#overlay-dark", 2, {
+      top: "-100%",
+      ease: "power3.inOut",
+      delay: 4,
     });
-    </script>
+    gsap.from(".divider", 3, {
+      scaleX: 0,
+      ease: "power3.inOut",
+      delay: 1,
+      stagger: {
+        amount: 1,
+      },
+    });
+    gsap.from(".row > .col", 2, {
+      opacity: 0,
+      y: 40,
+      ease: "power3.inOut",
+      delay: 2,
+      stagger: {
+        amount: 1.5,
+      },
+    });
+
+    gsap.from(".marquee", 1, {
+      bottom: "-5%",
+      opacity: 0,
+      ease: "power3.inOut",
+      delay: 4.5,
+    });
+  </script>
+
+
 </body>
 </html>
