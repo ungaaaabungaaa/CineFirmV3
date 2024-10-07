@@ -23,771 +23,844 @@
     <link rel="prefetch" href="./gallery.html">
     <link rel="prefetch" href="./terms.html">
 
-
-    <link rel="preload" as="image" href="./about/assets/img1.webp">
-    <link rel="preload" as="image" href="./about/assets/img2.webp">
-    <link rel="preload" as="image" href="./about/assets/img3.webp">
-    <link rel="preload" as="image" href="./about/assets/img4.webp">
-    <link rel="preload" as="image" href="./about/assets/img5.webp">
-    <link rel="preload" as="image" href="./about/assets/img6.webp">
-    <link rel="preload" as="image" href="./about/assets/img7.webp">
-    <link rel="preload" as="image" href="./about/assets/img8.webp">
-    <link rel="preload" as="image" href="./about/assets/img9.webp">
-    <link rel="preload" as="image" href="./about/assets/img10.webp">
-    
     <style>
-        * {
+      * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         }
 
         html,
-        body 
-        {
-        width: 100vw;
-        height: 100vh;
-        background-color: #000;
+        body {
+        width: 100%;
+        height: 100%;
+        background-color: black;
         font-family: "Sora", sans-serif;
         font-optical-sizing: auto;
+        overflow-x: hidden;
         }
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .header-slider {
-          color: #fff;
-          font-size: 36px;
-          font-weight: 500;
-        }
-
-        a,
-        p {
-          text-decoration: none;
-          color: #fff;
-          font-size: 16px;
-          font-weight: 500;
-        }
-
-        
-
     </style>
- 
+
     <style>
-      /* Menu Style */
+      img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-      /* logos */
-      .logo,
-      .menu-logo {
-      position: absolute;
-      top: 2em;
-      left: 2em;
-      }
+a,
+p {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
 
-      .logo a,
-      .menu-logo a {
-      text-decoration: none;
-      text-transform: uppercase;
-      color: #000;
-      font-family: "Sora", sans-serif;
-      font-size: 60px;
-      font-weight: bold;
-      }
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  z-index: 2;
+}
 
-      .menu-logo a {
-      color: #fff;
-      }
+nav a {
+  opacity: 0.5;
+}
 
-      /* menu toggle btn */
-      .menu-toggle {
-      position: fixed;
-      top: 2em;
-      right: 2em;
-      width: 120px;
-      height: 60px;
-      background-color: #0f0f0f;
-      border-radius: 8em;
-      transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-      transform-origin: right;
-      cursor: pointer;
-      z-index: 99;
-      }
+nav a#active {
+  opacity: 1;
+}
 
-      .menu-toggle.opened {
-      width: 60px;
-      }
+.slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
-      .menu-copy {
-      position: absolute;
-      top: 50%;
-      left: 30px;
-      transform: translateY(-50%);
-      color: #fff;
-      transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-      z-index: 1;
-      }
+.slider-images {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
-      .menu-copy p {
-      text-transform: uppercase;
-      font-weight: 500;
-      font-size: 12px;
-      margin: 0;
-      padding: 0;
-      }
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
-      .menu-toggle:hover .menu-copy {
-      left: 20px;
-      }
+.slider-counter {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 24px;
+  display: flex;
+  gap: 0.5em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
 
-      .menu-toggle.opened .menu-copy {
-      opacity: 0;
-      }
+.slider-counter > div {
+  flex: 1;
+}
 
-      .menu-toggle-icon {
-      position: absolute;
-      right: 0;
-      width: 60px;
-      height: 60px;
-      border-radius: 100%;
-      clip-path: circle(10% at 50% 50%);
-      background-color: white;
-      transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-      z-index: 10;
-      overflow: hidden;
-      }
+.slider-counter p {
+  line-height: 20px;
+}
 
-      .menu-toggle:hover .menu-toggle-icon {
-      clip-path: circle(35% at 50% 50%);
-      }
+.counter {
+  position: relative;
+  top: 0px;
+  will-change: transform;
+}
 
-      .menu-toggle.opened .menu-toggle-icon {
-      clip-path: circle(50% at 50% 50%);
-      transform: scale(1.125);
-      }
+.slider-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 64px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
 
-      .hamburger {
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-      opacity: 0;
-      }
+.slider-title-wrapper {
+  position: relative;
+  width: 100%;
+  top: 0px;
+  text-align: center;
+  will-change: transform;
+}
 
-      .menu-toggle:hover .hamburger,
-      .menu-toggle.opened .hamburger {
-      top: 50%;
-      opacity: 1;
-      }
+.slider-title-wrapper p {
+  font-size: 50px;
+  line-height: 60px;
+}
 
-      .menu-bar {
-      position: absolute;
-      width: 15px;
-      height: 1.5px;
-      background: #000;
-      transition-property: transform;
-      transition: all 250ms ease-out;
-      }
+.slider-indicators {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
 
-      .menu-bar[data-position="top"] {
-      transform: translateY(-3px);
-      }
+.slider-indicators p {
+  position: relative;
+  font-size: 40px;
+  font-weight: 200;
+  will-change: transform;
+}
 
-      .menu-bar[data-position="bottom"] {
-      transform: translateY(3px);
-      }
+.slider-preview {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+  width: 35%;
+  height: 50px;
+  display: flex;
+  gap: 1em;
+}
 
-      .menu-toggle.opened .menu-bar[data-position="top"] {
-      transform: translateY(0) rotate(45deg) scaleX(1.05);
-      }
+.preview {
+  position: relative;
+  flex: 1;
+  cursor: pointer;
+}
 
-      .menu-toggle.opened .menu-bar[data-position="bottom"] {
-      transform: translateY(0) rotate(-45deg) scaleX(1.05);
-      }
+.preview::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
 
-      /* menu */
-      .menu {
-      position: fixed;
-      top: 0;
-      z-index: 89;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      background-color: #0f0f0f;
-      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-      pointer-events: none;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      }
+.preview.active::after {
+  background-color: rgba(0, 0, 0, 0);
+}
 
-      .col-1 {
-      flex: 1;
-      }
+@media (max-width: 900px) {
+  .slider-indicators {
+    width: 90%;
+  }
 
-      .col-2 {
-      flex: 2;
-      }
+  .slider-preview {
+    width: 90%;
+    bottom: 5em;
+  }
 
-      .col {
-      position: relative;
-      height: 100%;
-      padding: 10em 2em 2em 2em;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      }
-
-      .link {
-      position: relative;
-      transform: translateY(30px);
-      opacity: 0;
-      }
-
-      .link a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 48px;
-      font-weight: 300;
-      letter-spacing: -1.5px;
-      line-height: 125%;
-      }
-
-      .video-wrapper {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background-color: #1d1d1d;
-      clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-      overflow: hidden;
-      padding: 2em;
-      }
-
-      .video-wrapper video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      }
-
-      .socials {
-      width: 50%;
-      display: flex;
-      gap: 2em;
-      }
-
-      .socials .sub-col {
-      flex: 1;
-      }
-
-      .socials .sub-col p {
-      position: relative;
-      color: #fff;
-      transform: translateY(30px);
-      opacity: 0;
-      text-transform: uppercase;
-      font-family: "Sora", sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      }
-
-      .header-menu .header-menu-h3 {
-      color: #fff;
-      text-transform: uppercase;
-      font-family: "Sora", sans-serif;
-      font-size: 500px;
-      font-weight: bold;
-      line-height: 100%;
-      height: 400px;
-      }
-
-      .header-menu  .header-menu-h3 span {
-      position: relative;
-      display: inline-block;
-      transform: scale(0.75) translateY(500px) rotateY(90deg);
-      transform-origin: bottom;
-      }
-
-      @media (max-width: 900px) {
-          .col-1 {
-              flex: 2;
-              align-items: flex-start;
-          }
-
-          .link a {
-              font-size: 30px;
-          }
-
-          .video-wrapper {
-              padding: 0.4em;
-          }
-
-          .socials {
-              width: 100%;
-              flex-direction: column;
-              gap: 8em;
-          }
-
-          .header-menu .header-menu-h3 {
-                display: none;
-          }
-
-          #menu-logo-mobile {
-            text-decoration: none;
-            text-transform: uppercase;
-            color: white;
-            font-family: "Sora", sans-serif;
-            font-size: xx-large;
-            font-weight: bold;
-          }
-      }
+  .slider-title-wrapper p {
+    font-size: 30px;
+  }
+}
     </style>
+
+    <style>
+  /* Menu Style */
+  
+  /* logos */
+  .logo,
+  .menu-logo {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  }
+
+  .logo a,
+  .menu-logo a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 60px;
+  font-weight: bold;
+  }
+
+  .menu-logo a {
+  color: #fff;
+  }
+
+  /* menu toggle btn */
+  .menu-toggle {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  width: 120px;
+  height: 60px;
+  background-color: black;
+  border-radius: 8em;
+  transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform-origin: right;
+  cursor: pointer;
+  z-index: 99;
+  }
+
+  .menu-toggle.opened {
+  width: 60px;
+  }
+
+  .menu-copy {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  color: #fff;
+  transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 1;
+  }
+
+  .menu-copy p {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  }
+
+  .menu-toggle:hover .menu-copy {
+  left: 20px;
+  }
+
+  .menu-toggle.opened .menu-copy {
+  opacity: 0;
+  }
+
+  .menu-toggle-icon {
+  position: absolute;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  clip-path: circle(10% at 50% 50%);
+  background-color: white;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 10;
+  overflow: hidden;
+  }
+
+  .menu-toggle:hover .menu-toggle-icon {
+  clip-path: circle(35% at 50% 50%);
+  }
+
+  .menu-toggle.opened .menu-toggle-icon {
+  clip-path: circle(50% at 50% 50%);
+  transform: scale(1.125);
+  }
+
+  .hamburger {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  opacity: 0;
+  }
+
+  .menu-toggle:hover .hamburger,
+  .menu-toggle.opened .hamburger {
+  top: 50%;
+  opacity: 1;
+  }
+
+  .menu-bar {
+  position: absolute;
+  width: 15px;
+  height: 1.5px;
+  background: #000;
+  transition-property: transform;
+  transition: all 250ms ease-out;
+  }
+
+  .menu-bar[data-position="top"] {
+  transform: translateY(-3px);
+  }
+
+  .menu-bar[data-position="bottom"] {
+  transform: translateY(3px);
+  }
+
+  .menu-toggle.opened .menu-bar[data-position="top"] {
+  transform: translateY(0) rotate(45deg) scaleX(1.05);
+  }
+
+  .menu-toggle.opened .menu-bar[data-position="bottom"] {
+  transform: translateY(0) rotate(-45deg) scaleX(1.05);
+  }
+
+  /* menu */
+  .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 98;
+  background-color: #0f0f0f;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  pointer-events: none;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  }
+
+  .col-1 {
+  flex: 1;
+  }
+
+  .col-2 {
+  flex: 2;
+  }
+
+  .col {
+  position: relative;
+  height: 100%;
+  padding: 10em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  }
+
+  .link {
+  position: relative;
+  transform: translateY(30px);
+  opacity: 0;
+  }
+
+  .link a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  line-height: 125%;
+  }
+
+  .video-wrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #1d1d1d;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  overflow: hidden;
+  padding: 2em;
+  }
+
+  .video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  }
+
+  .socials {
+  width: 50%;
+  display: flex;
+  gap: 2em;
+  }
+
+  .socials .sub-col {
+  flex: 1;
+  }
+
+  .socials .sub-col p {
+  position: relative;
+  color: #fff;
+  transform: translateY(30px);
+  opacity: 0;
+  text-transform: uppercase;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 12px;
+  font-weight: 400;
+  }
+
+  .header-menu .header-menu-h3 {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 500px;
+  font-weight: bold;
+  line-height: 100%;
+  height: 400px;
+  }
+
+  .header-menu .header-menu-h3 span {
+  position: relative;
+  display: inline-block;
+  transform: scale(0.75) translateY(500px) rotateY(90deg);
+  transform-origin: bottom;
+  }
+
+  @media (max-width: 900px) {
+    .col-1 {
+        flex: 2;
+        align-items: flex-start;
+    }
+
+    .link a {
+        font-size: 30px;
+    }
+
+    .video-wrapper {
+        padding: 0.4em;
+    }
+
+    .socials {
+        width: 100%;
+        flex-direction: column;
+        gap: 8em;
+    }
+
+    .header-menu .header-menu-h3 {
+              display: none;
+          }
+
+    #menu-logo-mobile {
+          text-decoration: none;
+          text-transform: uppercase;
+          color: white;
+          font-family: "Sora", sans-serif;
+          font-size: xx-large;
+          font-weight: bold;
+    }
+
+  }
+    </style>
+
 </head>
 <body>
 
 
-      <!--  Menu   -->
       <div class="menu-toggle closed">
-        <div class="menu-toggle-icon">
-          <div class="hamburger">
-            <div class="menu-bar" data-position="top"></div>
-            <div class="menu-bar" data-position="bottom"></div>
+          <div class="menu-toggle-icon">
+            <div class="hamburger">
+              <div class="menu-bar" data-position="top"></div>
+              <div class="menu-bar" data-position="bottom"></div>
+            </div>
           </div>
-        </div>
-        <div class="menu-copy">
-          <p>Home</p>
-        </div>
+          <div class="menu-copy">
+            <p>Home</p>
+          </div>
       </div>
+
       <div class="menu">
-        <div class="col col-1">
-          <div class="menu-logo">
-            <a id="menu-logo-mobile" href="./index.html">CineFirm</a>
+          <div class="col col-1">
+            <div class="menu-logo">
+              <a id="menu-logo-mobile" href="./index.html">CineFirm</a>
+            </div>
+            <div class="links">
+              <div class="link"><a href="./portfolio.html">Portfolio</a></div>
+              <div class="link"><a href="./gallery.html">Gallery</a></div>
+              <div class="link"><a href="./terms.html">Terms</a></div>
+              <div class="link"><a href="./404.html">404</a></div>
+            </div>
+            <div class="video-wrapper">
+              <video autoplay muted loop>
+                <source src="./menu/assets/video.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
-          <div class="links">
-            <div class="link"><a href="./portfolio.html">Portfolio</a></div>
-            <div class="link"><a href="./gallery.html">Gallery</a></div>
-            <div class="link"><a href="./terms.html">Terms</a></div>
-            <div class="link"><a href="./404.html">404</a></div>
+          <div class="col col-2">
+            <div class="socials">
+              <div class="sub-col">
+                <p>motinivas</p>
+                <p>1A, 3rd Cross Rd</p>
+                <p>Srinivagilu, Chandra Reddy Layout</p>
+                <p> S T Bed Layout</p>
+                <p>Ejipura, Bengaluruy</p>
+                <p>Karnataka - 560095</p>
+                <br />
+                <p>contact@cinefirm.in</p>
+                <p> 098858 59637</p>
+              </div>
+              <div class="sub-col">
+                <p>Instagram</p>
+                <p>LinkedIn</p>
+                <p>Twitter</p>
+                <p>Facebook</p>
+                <p>Dribble</p>
+                <p>Pintrest</p>
+                <br />
+                <p>01 62 31 82 42</p>
+              </div>
+            </div>
+
+            <div class="header-menu">
+              <h3 class="header-menu-h3">CF</h3>
+            </div>
           </div>
-          <div class="video-wrapper">
-            <video autoplay muted loop>
-              <source src="./menu/assets/video.mp4" type="video/mp4" />
-            </video>
+      </div>
+
+      <div class="slider">
+        <div class="slider-images">
+          <div class="img"><img src="./assets/img1.webp" alt="" /></div>
+        </div>
+
+        <div class="slider-title">
+          <div class="slider-title-wrapper">
+            <p>Pav Bhaji</p>
+            <p>Yuki</p>
+            <p>Induldge</p>
+            <p>Yuki Again</p>
+            <p>Panchami</p>
           </div>
         </div>
-        <div class="col col-2">
-          <div class="socials">
-            <div class="sub-col">
-              <p>motinivas</p>
-              <p>1A, 3rd Cross Rd</p>
-              <p>Srinivagilu, Chandra Reddy Layout</p>
-              <p> S T Bed Layout</p>
-              <p>Ejipura, Bengaluruy</p>
-              <p>Karnataka - 560095</p>
-              <br />
-              <p>contact@cinefirm.in</p>
-              <p> 098858 59637</p>
-            </div>
-            <div class="sub-col">
-              <p>Instagram</p>
-              <p>LinkedIn</p>
-              <p>Twitter</p>
-              <p>Facebook</p>
-              <p>Dribble</p>
-              <p>Pintrest</p>
-              <br />
-              <p>01 62 31 82 42</p>
-            </div>
+
+        <div class="slider-counter">
+          <div class="counter">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
           </div>
-  
-          <div class="header-menu">
-            <h3 class="header-menu-h3">CF</h3>
-          </div>
+          <div><p>&mdash;</p></div>
+          <div><p>5</p></div>
+        </div>
+
+        <div class="slider-preview">
+          <div class="preview active"><img src="./assets/img1.webp" alt="" /></div>
+          <div class="preview"><img src="./assets/img2.webp" alt="" /></div>
+          <div class="preview"><img src="./assets/img3.webp" alt="" /></div>
+          <div class="preview"><img src="./assets/img4.webp" alt="" /></div>
+          <div class="preview"><img src="./assets/img5.webp" alt="" /></div>
+        </div>
+
+        <div class="slider-indicators">
+          <p>+</p>
+          <p>+</p>
         </div>
       </div>
-      <!--  Menu   -->   
 
 
-     
-
-     
-
-   
-
-
-      
-    <script src="https://unpkg.com/split-type"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-    
-   
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(CustomEase);
   CustomEase.create(
     "hop",
-    "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
+    "M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1"
   );
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".menu");
-  const links = document.querySelectorAll(".link");
-  const socialLinks = document.querySelectorAll(".socials p");
-  let isAnimating = false;
+  const sliderImages = document.querySelector(".slider-images");
+  const counter = document.querySelector(".counter");
+  const titles = document.querySelector(".slider-title-wrapper");
+  const indicators = document.querySelectorAll(".slider-indicators p");
+  const prevSlides = document.querySelectorAll(".slider-preview .preview");
+  const slidePreview = document.querySelector(".slider-preview");
 
-  function splitTextIntoSpans(selector) {
-    let elements = document.querySelectorAll(selector);
-    elements.forEach((element) => {
-      let text = element.innerText;
-      let splitText = text
-        .split("")
-        .map(function (char) {
-          return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
-        })
-        .join("");
-      element.innerHTML = splitText;
+  let currentImg = 1;
+  const totalSlides = 5;
+  let indicatorRotation = 0;
+
+  function updateCounterAndTitlePosition() {
+    const counterY = -20 * (currentImg - 1);
+    const titleY = -60 * (currentImg - 1);
+
+    gsap.to(counter, {
+      y: counterY,
+      duration: 1,
+      ease: "hop",
+    });
+
+    gsap.to(titles, {
+      y: titleY,
+      duration: 1,
+      ease: "hop",
     });
   }
 
-  splitTextIntoSpans(".header-menu .header-menu-h3");
+  function updateActiveSlidePreview() {
+    prevSlides.forEach((prev) => prev.classList.remove("active"));
+    prevSlides[currentImg - 1].classList.add("active");
+  }
 
-  menuToggle.addEventListener("click", () => {
-    
-    
-    if (isAnimating) return;
+  function animateSlide(direction) {
+    const currentSlide =
+      document.querySelectorAll(".img")[
+        document.querySelectorAll(".img").length - 1
+      ];
 
-    if (menuToggle.classList.contains("closed")) {
-      menuToggle.classList.remove("closed");
-      menuToggle.classList.add("opened");
+    const slideImg = document.createElement("div");
+    slideImg.classList.add("img");
 
-      isAnimating = true;
+    const slideImgElem = document.createElement("img");
+    slideImgElem.src = `./assets/img${currentImg}.webp`;
+    gsap.set(slideImgElem, { x: direction === "left" ? -500 : 500 });
 
-      gsap.to(menu, {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "hop",
-        duration: 1.5,
-        onStart: () => {
-          menu.style.pointerEvents = "all";
-        },
-        onComplete: () => {
-          isAnimating = false;
-        },
-      });
+    slideImg.appendChild(slideImgElem);
+    sliderImages.appendChild(slideImg);
 
-      // Animate main links when opening
-      gsap.to(links, {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        delay: 0.85,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      // Animate social links when opening
-      gsap.to(socialLinks, {
-        y: 0,
-        opacity: 1,
-        stagger: 0.05,
-        delay: 0.85,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      gsap.to(".video-wrapper", {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "hop",
-        duration: 1.5,
-        delay: 0.5,
-      });
-
-      // Animate header text rotation
-      gsap.to(".header-menu .header-menu-h3 span", {
-        rotateY: 0,
-        stagger: 0.05,
-        delay: 0.75,
-        duration: 1.5,
-        ease: "power4.out",
-      });
-
-      // Animate header text vertical movement
-      gsap.to(".header-menu .header-menu-h3 span", {
-        y: 0,
-        scale: 1,
-        stagger: 0.05,
-        delay: 0.5,
-        duration: 1.5,
-        ease: "power4.out",
-      });
-      } else {
-          menuToggle.classList.remove("opened");
-          menuToggle.classList.add("closed");
-
-          isAnimating = true;
-
-          gsap.to(menu, {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-            ease: "hop",
-            duration: 1.5,
-            onComplete: () => {
-              menu.style.pointerEvents = "none";
-              gsap.set(menu, {
-                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-              });
-
-              gsap.set(links, { y: 30, opacity: 0 });
-              gsap.set(socialLinks, { y: 30, opacity: 0 });
-              gsap.set(".video-wrapper", {
-                clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-              });
-              gsap.set(".header-menu .header-menu-h3 span", {
-                y: 500,
-                rotateY: 90,
-                scale: 0.8,
-              });
-
-              isAnimating = false;
-            },
-          });
-        }
-      });
+    gsap.to(currentSlide.querySelector("img"), {
+      x: direction === "left" ? 500 : -500,
+      duration: 1.5,
+      ease: "hop",
     });
-    </script>
 
-   
-    <script type="module">
-      import { galleryItems } from "./about/assets/data.js";
-       
-      document.addEventListener("DOMContentLoaded", function () {
-        const gallery = document.querySelector(".gallery");
-        const blurryPrev = document.querySelector(".blurry-prev");
-        const projectPreview = document.querySelector(".project-preview");
-        const itemCount = galleryItems.length;
+    gsap.fromTo(
+      slideImg,
+      {
+        clipPath:
+          direction === "left"
+            ? "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"
+            : "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+      },
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        duration: 1.5,
+        ease: "hop",
+      }
+    );
+    gsap.to(slideImgElem, {
+      x: 0,
+      duration: 1.5,
+      ease: "hop",
+    });
 
-        let activeItemIndex = 0;
-        let isAnimating = false;
+    cleanupSlides();
 
-        function createSplitText(element) {
-          const splitText = new SplitType(element, { types: "lines" });
-          element.innerHTML = "";
-          splitText.lines.forEach((line) => {
-            const lineDiv = document.createElement("div");
-            lineDiv.className = "line";
-            const lineSpan = document.createElement("span");
-            lineSpan.textContent = line.textContent;
-            lineDiv.appendChild(lineSpan);
-            element.appendChild(lineDiv);
-          });
+    indicatorRotation += direction === "left" ? -90 : 90;
+    gsap.to(indicators, {
+      rotate: indicatorRotation,
+      duration: 1,
+      ease: "hop",
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    const sliderWidth = document.querySelector(".slider").clientWidth;
+    const clickPosition = event.clientX;
+
+    if (slidePreview.contains(event.target)) {
+      const clickedPrev = event.target.closest(".preview");
+
+      if (clickedPrev) {
+        const clickedIndex = Array.from(prevSlides).indexOf(clickedPrev) + 1;
+
+        if (clickedIndex !== currentImg) {
+          if (clickedIndex < currentImg) {
+            currentImg = clickedIndex;
+            animateSlide("left");
+          } else {
+            currentImg = clickedIndex;
+            animateSlide("right");
+          }
+          updateActiveSlidePreview();
+          updateCounterAndTitlePosition();
         }
+      }
+      return;
+    }
 
-        const initialInfoText = document.querySelector(".info p");
-        if (initialInfoText) {
-          createSplitText(initialInfoText);
-        }
+    if (clickPosition < sliderWidth / 2 && currentImg !== 1) {
+      currentImg--;
+      animateSlide("left");
+    } else if (clickPosition > sliderWidth / 2 && currentImg !== totalSlides) {
+      currentImg++;
+      animateSlide("right");
+    }
 
-        const elementsToAnimate = document.querySelectorAll(
-          ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
-        );
-        gsap.set(elementsToAnimate, {
-          y: 0,
-        });
+    updateActiveSlidePreview();
+    updateCounterAndTitlePosition();
+  });
 
-        for (let i = 0; i < itemCount; i++) {
-          const itemDiv = document.createElement("div");
-          itemDiv.classList.add("item");
-          if (i === 0) itemDiv.classList.add("active");
+  function cleanupSlides() {
+    const imgElements = document.querySelectorAll(".slider-images .img");
+    if (imgElements.length > totalSlides) {
+      imgElements[0].remove();
+    }
+  }
+});
 
-          const img = document.createElement("img");
-          img.src = `./about/assets/img${i + 1}.webp`;
-          img.alt = galleryItems[i].title;
-
-          itemDiv.appendChild(img);
-          itemDiv.dataset.index = i;
-          itemDiv.addEventListener("click", () => handleItemClick(i));
-          gallery.appendChild(itemDiv);
-        }
-
-        function createElementWithClass(tag, className) {
-          const element = document.createElement(tag);
-          element.classList.add(className);
-          return element;
-        }
-
-        function createProjectDetails(activeItem, index) {
-          const newProjectDetails = createElementWithClass("div", "project-details");
-
-          const detailsStructure = [
-            { className: "title", tag: "h1", content: activeItem.title },
-            { className: "info", tag: "p", content: activeItem.copy },
-            { className: "credits", tag: "p", content: "Credits" },
-            {
-              className: "director",
-              tag: "p",
-              content: `Director: ${activeItem.director}`,
-            },
-            {
-              className: "cinematographer",
-              tag: "p",
-              content: `Cinematographer: ${activeItem.cinematographer}`,
-            },
-          ];
-
-          detailsStructure.forEach(({ className, tag, content }) => {
-            const div = createElementWithClass("div", className);
-            const element = document.createElement(tag);
-            element.textContent = content;
-            div.appendChild(element);
-            newProjectDetails.appendChild(div);
-          });
-
-          const newProjectImg = createElementWithClass("div", "project-img");
-          const newImg = document.createElement("img");
-          newImg.src = `./about/assets/img${index + 1}.webp`;
-          newImg.alt = activeItem.title;
-          newProjectImg.appendChild(newImg);
-
-          return {
-            newProjectDetails,
-            newProjectImg,
-            infoP: newProjectDetails.querySelector(".info p"),
-          };
-        }
-
-        function handleItemClick(index) {
-          if (index === activeItemIndex || isAnimating) return;
-
-          isAnimating = true;
-
-          const activeItem = galleryItems[index];
-
-          gallery.children[activeItemIndex].classList.remove("active");
-          gallery.children[index].classList.add("active");
-          activeItemIndex = index;
-
-          const elementsToAnimate = document.querySelectorAll(
-            ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          gsap.registerPlugin(CustomEase);
+          CustomEase.create(
+            "hop",
+            "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
           );
 
-          const currentProjectImg = document.querySelector(".project-img");
-          const currentProjectImgElem = currentProjectImg.querySelector("img");
+          const menuToggle = document.querySelector(".menu-toggle");
+          const menu = document.querySelector(".menu");
+          const links = document.querySelectorAll(".link");
+          const socialLinks = document.querySelectorAll(".socials p");
+          let isAnimating = false;
 
-          const newBlurryImg = document.createElement("img");
-          newBlurryImg.src = `./about/assets/img${index + 1}.webp`;
-          newBlurryImg.alt = activeItem.title;
-          gsap.set(newBlurryImg, {
-            opacity: 0,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          });
-          blurryPrev.insertBefore(newBlurryImg, blurryPrev.firstChild);
-
-          const currentBlurryImg = blurryPrev.querySelector("img:nth-child(2)");
-          if (currentBlurryImg) {
-            gsap.to(currentBlurryImg, {
-              opacity: 0,
-              duration: 1,
-              delay: 0.5,
-              ease: "power2.inOut",
-              onComplete: () => blurryPrev.removeChild(currentBlurryImg),
+          function splitTextIntoSpans(selector) {
+            let elements = document.querySelectorAll(selector);
+            elements.forEach((element) => {
+              let text = element.innerText;
+              let splitText = text
+                .split("")
+                .map(function (char) {
+                  return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+                })
+                .join("");
+              element.innerHTML = splitText;
             });
           }
 
-          gsap.to(newBlurryImg, {
-            delay: 0.5,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.inOut",
-          });
+          splitTextIntoSpans(".header-menu .header-menu-h3");
 
-          gsap.to(elementsToAnimate, {
-            y: -60,
-            duration: 1,
-            ease: "power4.in",
-            stagger: 0.05,
-          });
+          menuToggle.addEventListener("click", () => {
+            if (isAnimating) return;
 
-          gsap.to(currentProjectImg, {
-            onStart: () => {
-              gsap.to(currentProjectImgElem, {
-                scale: 2,
-                duration: 1,
-                ease: "power4.in",
+            if (menuToggle.classList.contains("closed")) {
+              menuToggle.classList.remove("closed");
+              menuToggle.classList.add("opened");
+
+              isAnimating = true;
+
+              gsap.to(menu, {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                ease: "hop",
+                duration: 1.5,
+                onStart: () => {
+                  menu.style.pointerEvents = "all";
+                },
+                onComplete: () => {
+                  isAnimating = false;
+                },
               });
-            },
-            scale: 0,
-            bottom: "10em",
-            duration: 1,
-            ease: "power4.in",
-            onComplete: function () {
-              document.querySelector(".project-details")?.remove();
-              currentProjectImg.remove();
 
-              const { newProjectDetails, newProjectImg, infoP } =
-                createProjectDetails(activeItem, index);
+              // Animate main links when opening
+              gsap.to(links, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                delay: 0.85,
+                duration: 1,
+                ease: "power3.out",
+              });
 
-              projectPreview.appendChild(newProjectDetails);
-              projectPreview.appendChild(newProjectImg);
+              // Animate social links when opening
+              gsap.to(socialLinks, {
+                y: 0,
+                opacity: 1,
+                stagger: 0.05,
+                delay: 0.85,
+                duration: 1,
+                ease: "power3.out",
+              });
 
-              createSplitText(infoP);
+              gsap.to(".video-wrapper", {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                ease: "hop",
+                duration: 1.5,
+                delay: 0.5,
+              });
 
-              const newElementsToAnimate = newProjectDetails.querySelectorAll(
-                ".title h1, .info p .line span, .credits p, .director p, .cinematographer p"
-              );
+              // Animate header text rotation
+              gsap.to(".header-menu .header-menu-h3 span", {
+                rotateY: 0,
+                stagger: 0.05,
+                delay: 0.75,
+                duration: 1.5,
+                ease: "power4.out",
+              });
 
-              gsap.fromTo(
-                newElementsToAnimate,
-                { y: 40 },
-                {
-                  y: 0,
-                  duration: 1,
-                  ease: "power4.out",
-                  stagger: 0.05,
-                }
-              );
+              // Animate header text vertical movement
+              gsap.to(".header-menu .header-menu-h3 span", {
+                y: 0,
+                scale: 1,
+                stagger: 0.05,
+                delay: 0.5,
+                duration: 1.5,
+                ease: "power4.out",
+              });
+            } else {
+              menuToggle.classList.remove("opened");
+              menuToggle.classList.add("closed");
 
-              gsap.fromTo(
-                newProjectImg,
-                { scale: 0, bottom: "-10em" },
-                {
-                  scale: 1,
-                  bottom: "1em",
-                  duration: 1,
-                  ease: "power4.out",
-                }
-              );
+              isAnimating = true;
 
-              gsap.fromTo(
-                newProjectImg.querySelector("img"),
-                { scale: 2 },
-                {
-                  scale: 1,
-                  duration: 1,
-                  ease: "power4.out",
-                  onComplete: () => {
-                    isAnimating = false;
-                  },
-                }
-              );
-            },
+              gsap.to(menu, {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+                ease: "hop",
+                duration: 1.5,
+                onComplete: () => {
+                  menu.style.pointerEvents = "none";
+                  gsap.set(menu, {
+                    clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+                  });
+
+                  gsap.set(links, { y: 30, opacity: 0 });
+                  gsap.set(socialLinks, { y: 30, opacity: 0 });
+                  gsap.set(".video-wrapper", {
+                    clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+                  });
+                  gsap.set(".header-menu .header-menu-h3 span", {
+                    y: 500,
+                    rotateY: 90,
+                    scale: 0.8,
+                  });
+
+                  isAnimating = false;
+                },
+              });
+            }
           });
-        }
-      });
+        });
+      </script>
 
-    </script>
- 
-    
-    
-    
 </body>
 </html>
