@@ -22,17 +22,6 @@
     <link rel="prefetch" href="./index.html">
     <link rel="prefetch" href="./terms.html">
 
-    <link rel="preload" as="image" href="./about/assets/img1.webp">
-    <link rel="preload" as="image" href="./about/assets/img2.webp">
-    <link rel="preload" as="image" href="./about/assets/img3.webp">
-    <link rel="preload" as="image" href="./about/assets/img4.webp">
-    <link rel="preload" as="image" href="./about/assets/img5.webp">
-    <link rel="preload" as="image" href="./about/assets/img6.webp">
-    <link rel="preload" as="image" href="./about/assets/img7.webp">
-    <link rel="preload" as="image" href="./about/assets/img8.webp">
-    <link rel="preload" as="image" href="./about/assets/img9.webp">
-    <link rel="preload" as="image" href="./about/assets/img10.webp">
-  
     <title>Gallery</title>
     
     <style>
@@ -60,33 +49,7 @@
           object-fit: cover;
         }
 
-        .containerx
-        {
-          width: 100vw;
-          margin-top: 1.2rem;
-          margin-bottom: 1.2rem;
-          height: auto;
-          columns: 4;
-          z-index: 1;
-          background-color: black;
-          column-gap: 10px;   
-        }
-
-        .containerx .boxx
-        {
-          width: 100%;
-          margin-bottom: 0.4rem;
-          break-inside: avoid;
-        }
-
-
-        .containerx .boxx .imgx
-        {
-          max-width: 100%;
-          background-color: black;
-          border-radius: 2.1rem;
-          object-fit: cover; /* Change from contain to cover */
-        }
+        
 
     </style>
 
@@ -367,6 +330,86 @@
   }
     </style>
 
+    <style>
+
+::-webkit-scrollbar {
+    width: 0px;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* hide scrollbar for Chrome, Safari, and Opera */
+  }
+
+.wrapperx
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerx
+{
+    width: 98%;
+    height: 100%;
+    display: grid;
+    overflow-x: hidden;
+    grid-template-columns: 24% 24% 24% 24%;
+    gap: 1%;
+}
+.gallery-1x
+{
+    grid-column-start: 1;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.gallery-2x
+{
+    grid-column-start: 2;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.gallery-3x
+{
+    grid-column-start: 3;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.gallery-4x
+{
+    grid-column-start: 4;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.gallery_imgx
+{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 1.2rem;
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;  
+}
+
+    </style>
+
 </head>
 <body>
 
@@ -431,27 +474,41 @@
       </div>
   </div>
 
-  <div class="containerx">
-      <div class="boxx"><img  class="imgx" src="./about/assets/img1.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img3.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img4.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img5.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img6.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img7.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img8.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img9.webp" loading="lazy"   alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img10.webp" loading="lazy" alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img11.webp" loading="lazy" alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img12.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img13.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img14.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./about/assets/img15.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./404/assets/img-1.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./404/assets/img-2.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./404/assets/img-3.webp" loading="lazy"  alt="" srcset=""></div>
-      <div class="boxx"><img class="imgx" src="./404/assets/img-4.webp" loading="lazy"  alt="" srcset=""></div>
 
+  <div class="wrapperx">
+    <div class="containerx">
+        <div class="gallery-1x">
+            <img class="gallery_imgx" src="./about/assets/img1.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./about/assets/img2.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./about/assets/img3.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./about/assets/img5.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./about/assets/img6.webp" alt="" srcset="">
+        </div>
+        <div class="gallery-2x">
+          <img class="gallery_imgx" src="./about/assets/img7.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./about/assets/img8.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./about/assets/img9.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./assets/img1.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./assets/img2.webp" alt="" srcset="">
+        </div>
+        <div class="gallery-3x">
+          <img class="gallery_imgx" src="./assets/img3.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./assets/img4.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./assets/img5.webp" alt="" srcset="">
+          <img class="gallery_imgx" src="./index/assets/img1.webp" alt="" srcset="">
+        </div>
+        <div class="gallery-4x">
+            <img class="gallery_imgx" src="./index/assets/img2.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./index/assets/img3.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./index/assets/img4.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./index/assets/img5.webp" alt="" srcset="">
+            <img class="gallery_imgx" src="./404/assets/img-1.webp" alt="" srcset="">
+        </div>
+    </div>
   </div>
+
+
+  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
