@@ -18,24 +18,10 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#000000">
-    
     <link rel="prefetch" href="./404.html">
     <link rel="prefetch" href="./about.html">
     <link rel="prefetch" href="./gallery.html">
-  
     <link rel="prefetch" href="./terms.html">
-
-
-    <link rel="preload" as="image" href="./about/assets/img1.webp">
-    <link rel="preload" as="image" href="./about/assets/img2.webp">
-    <link rel="preload" as="image" href="./about/assets/img3.webp">
-    <link rel="preload" as="image" href="./about/assets/img4.webp">
-    <link rel="preload" as="image" href="./about/assets/img5.webp">
-    <link rel="preload" as="image" href="./about/assets/img6.webp">
-    <link rel="preload" as="image" href="./about/assets/img7.webp">
-    <link rel="preload" as="image" href="./about/assets/img8.webp">
-    <link rel="preload" as="image" href="./about/assets/img9.webp">
-    <link rel="preload" as="image" href="./about/assets/img10.webp">
 
 
     <title>CineFirm</title>
@@ -254,12 +240,6 @@
     </style>
 
    
-
-   
-
-
-
-
     
 </head>
 <body>
@@ -311,6 +291,97 @@
       </div>
     </div>
   </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create(
+    "hop",
+    "M0,0 C0.354,0 0.464,0.133 0.498,0.502 0.532,0.872 0.651,1 1,1"
+  );
+
+  const menu = document.querySelector(".menu");
+  const links = document.querySelectorAll(".link");
+  const socialLinks = document.querySelectorAll(".socials p");
+
+  function splitTextIntoSpans(selector) {
+    let elements = document.querySelectorAll(selector);
+    elements.forEach((element) => {
+      let text = element.innerText;
+      let splitText = text
+        .split("")
+        .map(function (char) {
+          return `<span>${char === " " ? "&nbsp;&nbsp;" : char}</span>`;
+        })
+        .join("");
+      element.innerHTML = splitText;
+    });
+  }
+
+  splitTextIntoSpans(".header-menu .header-menu-h3");
+
+  // Trigger the animations when the page loads
+  gsap.to(menu, {
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    ease: "hop",
+    duration: 1.5,
+    onStart: () => {
+      menu.style.pointerEvents = "all";
+    },
+  });
+
+  // Animate main links when loading
+  gsap.to(links, {
+    y: 0,
+    opacity: 1,
+    stagger: 0.1,
+    delay: 0.85,
+    duration: 1,
+    ease: "power3.out",
+  });
+
+  // Animate social links when loading
+  gsap.to(socialLinks, {
+    y: 0,
+    opacity: 1,
+    stagger: 0.05,
+    delay: 0.85,
+    duration: 1,
+    ease: "power3.out",
+  });
+
+  gsap.to(".video-wrapper", {
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    ease: "hop",
+    duration: 1.5,
+    delay: 0.5,
+  });
+
+  // Animate header text rotation
+  gsap.to(".header-menu .header-menu-h3 span", {
+    rotateY: 0,
+    stagger: 0.05,
+    delay: 1.75,
+    duration: 1.5,
+    ease: "power4.out",
+  });
+
+  // Animate header text vertical movement
+  gsap.to(".header-menu .header-menu-h3 span", {
+    y: 0,
+    scale: 1,
+    stagger: 0.05,
+    delay: 1.5,
+    duration: 1.5,
+    ease: "power4.out",
+  });
+});
+
+  </script>
 
   
 
