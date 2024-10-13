@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000"> <!-- For Chrome, Firefox OS, Opera -->
-    <meta name="msapplication-navbutton-color" content="#000000"> <!-- For Internet Explorer and Edge -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- For Safari on iOS -->
+    <title>Gallery</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#000000"> <!-- For Chrome, Firefox OS, Opera -->
+    <meta name="msapplication-navbutton-color" content="#000000"> <!-- For Internet Explorer and Edge -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> <!-- For Safari on iOS -->
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -17,40 +20,82 @@
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="theme-color" content="#000000">
 
-    <link rel="prefetch" href="./404.html">
-    <link rel="prefetch" href="./about.html">
     <link rel="prefetch" href="./index.html">
+    <link rel="prefetch" href="./about.html">
+    <link rel="prefetch" href="./gallery.html">
     <link rel="prefetch" href="./terms.html">
 
-    <title>Gallery</title>
-    
     <style>
 
-        *{
+        * 
+        {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         }
-
-
-        html,
-        body {
-        width: 100vw;
-        height: 100vh;
-        background: black;
-        font-family: "Sora", sans-serif;
-        font-optical-sizing: auto;
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            font-family: "Sora", sans-serif;
+            font-optical-sizing: auto;
+            background-color: black;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 24% 24% 24% 24%;
+            gap: 1%;
+            width: 100vw;
+            height: 100vh;
+        }
+        .marquee-container {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            will-change: transform;
+        }
+        .marquee-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+        .marquee-item {
+            width: 100%;
+            margin-bottom: 1.4rem;
+            border-radius: 1.2rem;
+        }
+        .marquee-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 1.2rem;
         }
 
-        img
+        #loading
         {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+            background-color: black;
+            width: 100%;
+            position: fixed;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: opacity 1s ease;
+            opacity: 1;
         }
 
-        
-
+        #loading.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Prevent interaction after fade out */
+        }
     </style>
 
     <style>
@@ -331,187 +376,191 @@
   }
     </style>
 
-    <style>
-
-    ::-webkit-scrollbar {
-        width: 0px;
-        /* Remove scrollbar space */
-        background: transparent;
-        /* Optional: just make scrollbar invisible */
-    }
-
-    html::-webkit-scrollbar {
-        display: none; /* hide scrollbar for Chrome, Safari, and Opera */
-      }
-
-    .wrapperx
-    {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        overflow: hidden;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .containerx
-    {
-        width: 98%;
-        height: 100%;
-        display: grid;
-        overflow-x: hidden;
-        grid-template-columns: 24% 24% 24% 24%;
-        gap: 1%;
-    }
-    .gallery-1x
-    {
-        grid-column-start: 1;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        height: 100%;
-    }
-
-    .gallery-2x
-    {
-        grid-column-start: 2;
-        width: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        height: 100%;
-    }
-
-    .gallery-3x
-    {
-        grid-column-start: 3;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .gallery-4x
-    {
-        grid-column-start: 4;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .gallery_imgx
-    {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 1.2rem;
-        margin-bottom: 0.4rem;
-        margin-top: 0.4rem;  
-    }
-
-    </style>
+    
 
 </head>
 <body>
 
 
-  <div class="menu-toggle closed">
-    <div class="menu-toggle-icon">
-      <div class="hamburger">
-        <div class="menu-bar" data-position="top"></div>
-        <div class="menu-bar" data-position="bottom"></div>
+    <div class="menu-toggle closed">
+      <div class="menu-toggle-icon">
+        <div class="hamburger">
+          <div class="menu-bar" data-position="top"></div>
+          <div class="menu-bar" data-position="bottom"></div>
+        </div>
+      </div>
+      <div class="menu-copy">
+        <p>Home</p>
       </div>
     </div>
-    <div class="menu-copy">
-      <p>Home</p>
-    </div>
-  </div>
 
-  <div class="menu">
-      <div class="col col-1">
-        <div class="menu-logo">
-          <a id="menu-logo-mobile" href="./index.html">CineFirm</a>
-        </div>
-        <div class="links">
+    <div class="menu">
+        <div class="col col-1">
+          <div class="menu-logo">
+            <a id="menu-logo-mobile" href="./index.html">CineFirm</a>
+          </div>
+          <div class="links">
             <div class="link"><a href="./portfolio.html">Portfolio</a></div>
             <div class="link"><a href="./gallery.html">Gallery</a></div>
             <div class="link"><a href="./terms.html">Terms</a></div>
             <div class="link"><a href="./404.html">404</a></div>
-        </div>
-        <div class="video-wrapper">
-          <video autoplay muted loop>
-            <source src="./menu/assets/video.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      <div class="col col-2">
-        <div class="socials">
-          <div class="sub-col">
-            <p>motinivas</p>
-            <p>1A, 3rd Cross Rd</p>
-            <p>Srinivagilu, Chandra Reddy Layout</p>
-            <p> S T Bed Layout</p>
-            <p>Ejipura, Bengaluruy</p>
-            <p>Karnataka - 560095</p>
-            <br />
-            <p>contact@cinefirm.in</p>
-            <p> 098858 59637</p>
           </div>
-          <div class="sub-col">
-            <p>Instagram</p>
-            <p>LinkedIn</p>
-            <p>Twitter</p>
-            <p>Facebook</p>
-            <p>Dribble</p>
-            <p>Pintrest</p>
-            <br />
-            <p>01 62 31 82 42</p>
+          <div class="video-wrapper">
+            <video autoplay muted loop>
+              <source src="./menu/assets/video.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
+        <div class="col col-2">
+          <div class="socials">
+            <div class="sub-col">
+              <p>motinivas</p>
+              <p>1A, 3rd Cross Rd</p>
+              <p>Srinivagilu, Chandra Reddy Layout</p>
+              <p> S T Bed Layout</p>
+              <p>Ejipura, Bengaluruy</p>
+              <p>Karnataka - 560095</p>
+              <br />
+              <p>contact@cinefirm.in</p>
+              <p> 098858 59637</p>
+            </div>
+            <div class="sub-col">
+              <p>Instagram</p>
+              <p>LinkedIn</p>
+              <p>Twitter</p>
+              <p>Facebook</p>
+              <p>Dribble</p>
+              <p>Pintrest</p>
+              <br />
+              <p>01 62 31 82 42</p>
+            </div>
+          </div>
 
-        <div class="header-menu">
-          <h3 class="header-menu-h3">CF</h3>
-        </div>
-      </div>
-  </div>
-
-
-  <div class="wrapperx">
-    <div class="containerx">
-        <div id="gallery-1x" class="gallery-1x">
-            <img class="gallery_imgx" src="./assets/img1.webp" alt="" srcset="">
-            <img class="gallery_imgx" src="./assets/img2.webp" alt="" srcset="">
-            <img class="gallery_imgx" src="./assets/img3.webp" alt="" srcset="">
-            <img class="gallery_imgx" src="./assets/img4.webp" alt="" srcset="">
-        </div>
-        <div id="gallery-2x" class="gallery-2x">
-          <img class="gallery_imgx" src="./404/assets/img-1.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-2.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-3.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-4.webp" alt="" srcset="">
-        </div>
-        <div id="gallery-3x" class="gallery-3x">
-          <img class="gallery_imgx" src="./assets/img1.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./assets/img2.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./assets/img3.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./assets/img4.webp" alt="" srcset="">
-        </div>
-        <div id="gallery-4x" class="gallery-4x">
-          <img class="gallery_imgx" src="./404/assets/img-1.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-2.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-3.webp" alt="" srcset="">
-          <img class="gallery_imgx" src="./404/assets/img-4.webp" alt="" srcset=""> 
+          <div class="header-menu">
+            <h3 class="header-menu-h3">CF</h3>
+          </div>
         </div>
     </div>
-  </div>
-
-
   
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <div id="loading">
+        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+        <dotlottie-player src="https://lottie.host/5a587109-7499-4d10-831e-6912a8fd16ec/TooePkuWNA.lottie" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
+    <div class="grid-container">
+        <!-- First Marquee (Up) -->
+        <div class="marquee-container">
+            <div class="marquee-content" data-direction="up">
+                <div class="marquee-item"><img src="./about/assets/1.webp" alt="Image 1"></div>
+                <div class="marquee-item"><img src="./about/assets/2.webp" alt="Image 2"></div>
+                <div class="marquee-item"><img src="./about/assets/3.webp" alt="Image 3"></div>
+                <div class="marquee-item"><img src="./about/assets/4.webp" alt="Image 4"></div>
+                <div class="marquee-item"><img src="./about/assets/5.webp" alt="Image 5"></div>
+            </div>
+        </div>
+        <!-- Second Marquee (Down) -->
+        <div class="marquee-container">
+            <div class="marquee-content" data-direction="down">
+              <div class="marquee-item"><img src="./about/assets/1.webp" alt="Image 1"></div>
+              <div class="marquee-item"><img src="./about/assets/2.webp" alt="Image 2"></div>
+              <div class="marquee-item"><img src="./about/assets/3.webp" alt="Image 3"></div>
+              <div class="marquee-item"><img src="./about/assets/4.webp" alt="Image 4"></div>
+              <div class="marquee-item"><img src="./about/assets/5.webp" alt="Image 5"></div>
+            </div>
+        </div>
+        <!-- Third Marquee (Up) -->
+        <div class="marquee-container">
+            <div class="marquee-content" data-direction="up">
+              <div class="marquee-item"><img src="./about/assets/1.webp" alt="Image 1"></div>
+              <div class="marquee-item"><img src="./about/assets/2.webp" alt="Image 2"></div>
+              <div class="marquee-item"><img src="./about/assets/3.webp" alt="Image 3"></div>
+              <div class="marquee-item"><img src="./about/assets/4.webp" alt="Image 4"></div>
+              <div class="marquee-item"><img src="./about/assets/5.webp" alt="Image 5"></div>
+            </div>
+        </div>
+        <!-- Fourth Marquee (Down) -->
+        <div class="marquee-container">
+            <div class="marquee-content" data-direction="down">
+              <div class="marquee-item"><img src="./about/assets/1.webp" alt="Image 1"></div>
+              <div class="marquee-item"><img src="./about/assets/2.webp" alt="Image 2"></div>
+              <div class="marquee-item"><img src="./about/assets/3.webp" alt="Image 3"></div>
+              <div class="marquee-item"><img src="./about/assets/4.webp" alt="Image 4"></div>
+              <div class="marquee-item"><img src="./about/assets/5.webp" alt="Image 5"></div>
+            </div>
+        </div>
+    </div>
 
-  <script>
+  
+    <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            const marquees = document.querySelectorAll('.marquee-content');
+            const loadingScreen = document.getElementById('loading');
+
+            function getTotalHeight(items) {
+                return Array.from(items).reduce((sum, item) => sum + item.offsetHeight + 14, 0); // Including margin
+            }
+
+            function setupInfiniteScroll(marquee, direction) {
+                const items = marquee.children;
+                const totalHeight = getTotalHeight(items);
+
+                // Clone items for smooth scrolling
+                let cloneCount = Math.ceil(window.innerHeight / items[0].offsetHeight);
+                for (let i = 0; i < cloneCount; i++) {
+                    marquee.appendChild(items[i].cloneNode(true));
+                }
+
+                // Setup GSAP animation
+                gsap.set(marquee, { y: direction === 'up' ? 0 : -totalHeight });
+
+                gsap.to(marquee, {
+                    y: direction === 'up' ? -totalHeight : 0,
+                    duration: 30,
+                    ease: 'none',
+                    repeat: -1,
+                    modifiers: {
+                        y: gsap.utils.unitize(value => (parseFloat(value) % totalHeight).toFixed(5))
+                    }
+                });
+                
+                // Fade out loading screen after starting marquee
+                loadingScreen.classList.add('fade-out');
+            }
+
+            let imagesLoaded = 0;
+            const totalImages = document.querySelectorAll('img').length;
+
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('load', () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages) {
+                        marquees.forEach(marquee => {
+                            const direction = marquee.getAttribute('data-direction');
+                            setupInfiniteScroll(marquee, direction);
+                        });
+                    }
+                });
+
+                img.addEventListener('error', () => {
+                    console.error(`Image failed to load: ${img.src}`);
+                });
+            });
+
+            // Fallback mechanism to retry initialization
+            setTimeout(() => {
+                if (imagesLoaded < totalImages) {
+                    marquees.forEach(marquee => {
+                        const direction = marquee.getAttribute('data-direction');
+                        setupInfiniteScroll(marquee, direction);
+                    });
+                }
+            }, 2000); // Adjust delay as necessary
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+    <script>
       document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(CustomEase);
         CustomEase.create(
@@ -642,53 +691,6 @@
       });
   </script>
 
-  <script type="module">
-          
-    import marquee from 'https://cdn.jsdelivr.net/npm/vanilla-marquee/dist/vanilla-marquee.js';
-    
-    new marquee(document.getElementById('gallery-1x'), {
-        css3easing: 'ease',
-        duplicated: true,
-        gap: 0,
-        delayBeforeStart: 3,
-        direction: 'down',
-        speed: 0.01
-    });
 
-    new marquee(document.getElementById('gallery-2x'), {
-        css3easing: 'ease',
-        duplicated: true,
-        gap: 0,
-        delayBeforeStart: 3,
-        direction: 'up',
-        speed: 0.01
-    });
-
-    new marquee(document.getElementById('gallery-3x'), {
-        css3easing: 'ease',
-        duplicated: true,
-        gap: 0,
-        delayBeforeStart: 3,
-        direction: 'down',
-        speed: 0.01
-    });
-
-    new marquee(document.getElementById('gallery-4x'), {
-        css3easing: 'ease',
-        duplicated: true,
-        gap: 0,
-        delayBeforeStart: 3,
-        direction: 'up',
-        speed: 0.01
-    });
-
-  
-
-
-
-
-
-  </script>
-       
 </body>
 </html>
