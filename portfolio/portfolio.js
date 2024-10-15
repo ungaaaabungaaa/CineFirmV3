@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slideImg.classList.add("img");
   
       const slideImgElem = document.createElement("img");
-      slideImgElem.src = `./assets/img${currentImg}.webp`;
+      slideImgElem.src = `./portfolio/assets/img${currentImg}.webp`;
       gsap.set(slideImgElem, { x: direction === "left" ? -500 : 500 });
   
       slideImg.appendChild(slideImgElem);
